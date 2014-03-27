@@ -1,0 +1,63 @@
+<repast.simphony.data2.engine.DataSetDescriptor>
+  <name>ShiftDoctor</name>
+  <type>NON_AGGREGATE</type>
+  <sourceType>AESim.Doctor</sourceType>
+  <inclTick>true</inclTick>
+  <inclBatchRun>false</inclBatchRun>
+  <inclRandomSeed>false</inclRandomSeed>
+  <scheduleParams>
+    <start>1.0</start>
+    <interval>1.0</interval>
+    <priority>-Infinity</priority>
+    <pType>LAST</pType>
+    <duration>-1.0</duration>
+    <frequency>REPEAT</frequency>
+    <hashCode>1476081890</hashCode>
+  </scheduleParams>
+  <atEnd>false</atEnd>
+  <methodDataSources class="linked-hash-map">
+    <entry>
+      <string>C2MyDurationShift</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>C2MyDurationShift</id>
+        <className>AESim.Doctor</className>
+        <methodName>getC2MyDurationShift</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>Id</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>Id</id>
+        <className>AESim.Doctor</className>
+        <methodName>getId</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>Day</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>Day</id>
+        <className>AESim.Doctor</className>
+        <methodName>getDay</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>Hour</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>Hour</id>
+        <className>AESim.Doctor</className>
+        <methodName>getHour</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>Minute</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>Minute</id>
+        <className>AESim.Doctor</className>
+        <methodName>getMinute</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+  </methodDataSources>
+  <countSources class="linked-hash-map"/>
+  <customNADataSources class="linked-hash-map"/>
+  <customAggDataSources class="linked-hash-map"/>
+</repast.simphony.data2.engine.DataSetDescriptor>

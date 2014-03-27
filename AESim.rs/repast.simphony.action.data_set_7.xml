@@ -1,0 +1,67 @@
+<repast.simphony.data2.engine.DataSetDescriptor>
+  <name>InterArrivalsAmbulanceWalkin</name>
+  <type>AGGREGATE</type>
+  <inclTick>true</inclTick>
+  <inclBatchRun>false</inclBatchRun>
+  <inclRandomSeed>false</inclRandomSeed>
+  <scheduleParams>
+    <start>1.0</start>
+    <interval>1.0</interval>
+    <priority>-Infinity</priority>
+    <pType>LAST</pType>
+    <duration>-1.0</duration>
+    <frequency>REPEAT</frequency>
+    <hashCode>981599362</hashCode>
+  </scheduleParams>
+  <atEnd>false</atEnd>
+  <methodDataSources class="linked-hash-map">
+    <entry>
+      <string>IAT_Walk_in</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>IAT_Walk_in</id>
+        <className>AESim.WalkInDoor</className>
+        <methodName>getNumberWalkedIn</methodName>
+        <aggType>SUM</aggType>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>IAT_Ambulance</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>IAT_Ambulance</id>
+        <className>AESim.AmbulanceIn</className>
+        <methodName>getNumberAmbulanceIn</methodName>
+        <aggType>SUM</aggType>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>week</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>week</id>
+        <className>AESim.Administrator</className>
+        <methodName>getWeek</methodName>
+        <aggType>SUM</aggType>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>day</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>day</id>
+        <className>AESim.Administrator</className>
+        <methodName>getDay</methodName>
+        <aggType>SUM</aggType>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>hour</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>hour</id>
+        <className>AESim.Administrator</className>
+        <methodName>getHour</methodName>
+        <aggType>SUM</aggType>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+  </methodDataSources>
+  <countSources class="linked-hash-map"/>
+  <customNADataSources class="linked-hash-map"/>
+  <customAggDataSources class="linked-hash-map"/>
+</repast.simphony.data2.engine.DataSetDescriptor>

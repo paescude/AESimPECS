@@ -1,0 +1,63 @@
+<repast.simphony.data2.engine.DataSetDescriptor>
+  <name>ConsultantVariables</name>
+  <type>NON_AGGREGATE</type>
+  <sourceType>AESim.Consultant</sourceType>
+  <inclTick>true</inclTick>
+  <inclBatchRun>false</inclBatchRun>
+  <inclRandomSeed>false</inclRandomSeed>
+  <scheduleParams>
+    <start>1.0</start>
+    <interval>1.0</interval>
+    <priority>-Infinity</priority>
+    <pType>LAST</pType>
+    <duration>-1.0</duration>
+    <frequency>REPEAT</frequency>
+    <hashCode>1259520439</hashCode>
+  </scheduleParams>
+  <atEnd>false</atEnd>
+  <methodDataSources class="linked-hash-map">
+    <entry>
+      <string>Id</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>Id</id>
+        <className>AESim.Consultant</className>
+        <methodName>getId</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>W1Fatigue</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>W1Fatigue</id>
+        <className>AESim.Consultant</className>
+        <methodName>getW1Fatigue</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>W2Stress</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>W2Stress</id>
+        <className>AESim.Consultant</className>
+        <methodName>getW2Stress</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>W3WillOfKnowledge1</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>W3WillOfKnowledge1</id>
+        <className>AESim.Consultant</className>
+        <methodName>getW3WillOfKnowledge1</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>W4SocialDesire</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>W4SocialDesire</id>
+        <className>AESim.Consultant</className>
+        <methodName>getW4SocialDesire</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+  </methodDataSources>
+  <countSources class="linked-hash-map"/>
+  <customNADataSources class="linked-hash-map"/>
+  <customAggDataSources class="linked-hash-map"/>
+</repast.simphony.data2.engine.DataSetDescriptor>

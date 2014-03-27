@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<parameters>
+				<parameter name="initialNurses" displayName="Nurses Initial" type="int" 
+					defaultValue="3" isReadOnly="false" converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+					
+				<parameter name="triageCubicles" displayName ="Triage Cubicles" type= "int"
+					defaultValue="1" isReadOnly="false" converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+					
+				<parameter name="trolleys" displayName ="Trolleys" type= "int"
+					defaultValue="10" isReadOnly="false" converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+					
+				<parameter name="minCubicles" displayName ="Minor Cubicles" type= "int"
+					defaultValue="5" isReadOnly="false" converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+				
+				<parameter name="mayorCubicles" displayName ="Mayor Cubicles" type= "int"
+					defaultValue="5" isReadOnly="false" converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+					
+				<parameter name="resCubicles" displayName ="Resus Cubicles" type= "int"
+					defaultValue="5" isReadOnly="false" converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+					
+				<parameter name="xRayCapacity" displayName ="xRay Rooms" type= "int"
+					defaultValue="1" isReadOnly="false" converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+					
+				<parameter name="testRoom" displayName ="Test Rooms" type= "int"
+					defaultValue="2" isReadOnly="false" converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+					
+				<parameter name="initialSHOs" displayName ="Initial SHOs" type= "int"
+					defaultValue="9" isReadOnly="false" converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+					
+				<parameter name="initialConsultants" displayName ="Initial Consultants" type= "int"
+					defaultValue="1" isReadOnly="false" converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+					
+				<parameter name="initialPatients" displayName="patients Initial" type="int" 
+					defaultValue="10" isReadOnly="false" converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+					
+				<parameter name="randomSeed" displayName="Default Random Seed" type="int" 
+						defaultValue="__NULL__" isReadOnly="false" converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+						
+				<parameter name="clerk_count" displayName="Clerks Initial" type="int" 
+						defaultValue="2" isReadOnly="false" converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+				<parameter name="registrationTimeMin" displayName="Registration Time Min" type="double" 
+						defaultValue="3" isReadOnly="false" converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+				<parameter name="registrationTimeMax" displayName="Registration Time Max" type="double" 
+						defaultValue="8" isReadOnly="false" converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+				<parameter name="registrationTimeModa" displayName="Registration Time Moda" type="double" 
+						defaultValue="5" isReadOnly="false" converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+		</parameters>
+
+

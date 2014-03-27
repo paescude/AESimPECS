@@ -1,0 +1,12 @@
+<repast.simphony.data2.engine.FileSinkDescriptor>
+  <name>DatatimeInSysEach</name>
+  <dataSet>DataInvidualTInSys</dataSet>
+  <delimiter>,</delimiter>
+  <format>TABULAR</format>
+  <sourceIds class="linked-hash-set">
+    <string>tick</string>
+    <string>TimeInSystem</string>
+  </sourceIds>
+  <fileName>C:\RepastSimphony-2.1\AESim\Outputs\dataTimeInSysEach.txt</fileName>
+  <addTimeStamp>true</addTimeStamp>
+</repast.simphony.data2.engine.FileSinkDescriptor>

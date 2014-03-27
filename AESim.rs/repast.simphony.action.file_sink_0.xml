@@ -1,0 +1,16 @@
+<repast.simphony.data2.engine.FileSinkDescriptor>
+  <name>numArrivalsAll</name>
+  <dataSet>InterArrivalsAmbulanceWalkin</dataSet>
+  <delimiter>,</delimiter>
+  <format>TABULAR</format>
+  <sourceIds class="linked-hash-set">
+    <string>tick</string>
+    <string>week</string>
+    <string>day</string>
+    <string>hour</string>
+    <string>IAT_Walk_in</string>
+    <string>IAT_Ambulance</string>
+  </sourceIds>
+  <fileName>C:\RepastSimphony-2.1\AESim\Outputs\numeroLlegadas.txt</fileName>
+  <addTimeStamp>true</addTimeStamp>
+</repast.simphony.data2.engine.FileSinkDescriptor>

@@ -1,0 +1,50 @@
+<repast.simphony.chart2.engine.TimeSeriesChartDescriptor>
+  <name>TimeSeries_IAT_All</name>
+  <dataSet>InterArrivalsAmbulanceWalkin</dataSet>
+  <xAxisLabel>Tick Count</xAxisLabel>
+  <yAxisLabel></yAxisLabel>
+  <chartTitle>Number of arrivals</chartTitle>
+  <type>TIME_SERIES</type>
+  <background>
+    <red>192</red>
+    <green>192</green>
+    <blue>192</blue>
+    <alpha>255</alpha>
+  </background>
+  <gridLineColor>
+    <red>255</red>
+    <green>255</green>
+    <blue>255</blue>
+    <alpha>255</alpha>
+  </gridLineColor>
+  <showGrid>true</showGrid>
+  <showLegend>true</showLegend>
+  <seriesIds>
+    <entry>
+      <string>IAT_Ambulance</string>
+      <SeriesData>
+        <label>IAT_Ambulance</label>
+        <color>
+          <red>255</red>
+          <green>0</green>
+          <blue>0</blue>
+          <alpha>255</alpha>
+        </color>
+      </SeriesData>
+    </entry>
+    <entry>
+      <string>IAT_Walk_in</string>
+      <SeriesData>
+        <label>IAT_Walk_in</label>
+        <color>
+          <red>0</red>
+          <green>0</green>
+          <blue>255</blue>
+          <alpha>255</alpha>
+        </color>
+      </SeriesData>
+    </entry>
+  </seriesIds>
+  <dataValueIds/>
+  <plotRangeLength>-1</plotRangeLength>
+</repast.simphony.chart2.engine.TimeSeriesChartDescriptor>

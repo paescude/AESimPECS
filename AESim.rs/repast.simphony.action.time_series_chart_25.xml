@@ -1,0 +1,40 @@
+<repast.simphony.chart2.engine.TimeSeriesChartDescriptor>
+  <name>ConsultantVariables</name>
+  <dataSet>ConsultantVariables</dataSet>
+  <xAxisLabel>Tick Count</xAxisLabel>
+  <yAxisLabel></yAxisLabel>
+  <chartTitle>Consultant Variables</chartTitle>
+  <type>TIME_SERIES</type>
+  <background>
+    <red>192</red>
+    <green>192</green>
+    <blue>192</blue>
+    <alpha>255</alpha>
+  </background>
+  <gridLineColor>
+    <red>255</red>
+    <green>255</green>
+    <blue>255</blue>
+    <alpha>255</alpha>
+  </gridLineColor>
+  <showGrid>true</showGrid>
+  <showLegend>true</showLegend>
+  <seriesIds>
+    <entry>
+      <string>Id</string>
+      <SeriesData>
+        <label></label>
+      </SeriesData>
+    </entry>
+  </seriesIds>
+  <dataValueIds>
+    <string>Week</string>
+    <string>Day</string>
+    <string>Hour</string>
+    <string>W1Fatigue</string>
+    <string>W2Stress</string>
+    <string>W3WillOfKnowledge1</string>
+    <string>W4SocialDesire</string>
+  </dataValueIds>
+  <plotRangeLength>-1</plotRangeLength>
+</repast.simphony.chart2.engine.TimeSeriesChartDescriptor>
