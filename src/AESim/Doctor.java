@@ -1326,7 +1326,7 @@ System.err.println(" ERROR: something is wrong here, no doctor to end fst assess
 			 doctor= patient.getMyDoctor();
 		}
 		
-		
+		//está en guthub
 		if (doctor!=null){
 		if (doctor!= patient.getMyDoctor()){
 System.out.println(doctor.getId() + " is ending reassessment but the doctor who has the patient is: " +patient.getMyDoctor() );
