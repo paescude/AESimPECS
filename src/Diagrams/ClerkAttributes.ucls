@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.4" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="AESim.Clerk" project="AESim" file="/AESim/src/AESim/Clerk.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="310" width="182" x="368" y="166"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="AESim.Clerk.EndRegistration" project="AESim" file="/AESim/src/AESim/Clerk.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="76" width="114" x="309" y="50"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="AESim.Clerk.Endshift" project="AESim" file="/AESim/src/AESim/Clerk.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="58" width="87" x="463" y="50"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <association id="4">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="5" name="clerk"/>      
+      <multiplicity id="6" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="7">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="2"/>  
+  </nesting>  
+  <nesting id="8">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="3"/>  
+  </nesting>  
+  <association id="9">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="10" name="clerk"/>      
+      <multiplicity id="11" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="false" package="false" protected="false" private="false" static="false"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
