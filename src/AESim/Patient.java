@@ -250,6 +250,8 @@ System.out.println(this.getId() + " has moved to the head of: " + queue.getId() 
 			if (bed != null) {
 				this.isWaitingBedReassessment = 0;
 				this.setMyBedReassessment(bed);
+				
+				
 				if (this.getMyBedReassessment()!=null){
 System.out.println(this.getMyBedReassessment().getId()+ " is available " + this.getMyBedReassessment().isAvailable() );
 					this.getMyBedReassessment().setAvailable(false);
@@ -280,40 +282,45 @@ System.out.println(this.getId() + " is back to his bed reassessment "+ myBed.get
 		this.setInSystem(true);		
 		Doctor doctor = this.getMyDoctor();
 		if (doctor == null) {
-System.err.println("\n ERROR: there is no doctor with patient");
+			System.err.println("\n ERROR: there is no doctor with patient");
 		} else {
-System.out.println(this.getId()
+			System.out.println(this.getId()
 					+ " has in mind the " + doctor.getId());
 			this.moveTo(grid, bed.getLoc());
-	
-System.out.println(this.getId() + " has moved to bed reassessment "
+
+			System.out.println(this.getId() + " has moved to bed reassessment "
 					+ bed.getId());
 			doctor.setMyPatientCalling(this);
 			if(this.needsTests){
 				doctor.myPatientsInTests.remove(this);
-System.out.println(doctor.getId()
+				System.out.println(doctor.getId()
 						+ " has removed from his patients in test " + this.getId());
 				if (!this.waitInCublicle){
 					doctor.myPatientsInBed.add(this);					
-System.out.println(doctor.getId()
+					System.out.println(doctor.getId()
 							+ " has added to his patients in bed " + this.getId());
 				}				
-			}						
-			doctor.getMyPatientsBackInBed().add(this);
+			}
+			if (!doctor.getMyPatientsBackInBed().contains(this)){
+			doctor.getMyPatientsBackInBed().add(this);}
 			//FIXME patientsForReassessment
-//			Doctor.patientsForReassessment.add(this);
+			//			Doctor.patientsForReassessment.add(this);
 			this.setMyResource(bed);
-System.out.println(" AFTER TESTS (or starting ReAssess inmediately) " + this.getId()
+			System.out.println(" AFTER TESTS (or starting ReAssess inmediately) " + this.getId()
 					+ " has in mind the doctor " + doctor.getId());						
 			String nameD = doctor.getId();
 			printElementsQueue(doctor.getMyPatientsInBed(), nameD +
 					" my patients in bed");
 			printElementsArray(doctor.getMyPatientsInTests(), nameD
 					+ " my patients in test ");
+			
 			this.setBackInBed(true);
-
+			//XXX 31 marzo agregué esto. Estro no debería ser necesario proque el watcher lo debería hacer sin embargo el reassessment done = 1, por qué?
+//			if(doctor.isAvailable()){
+//				doctor.decideWhatToDo();
+//			}
 		}
-	
+
 	}
 	
 	
@@ -462,7 +469,7 @@ System.out.println(this.getId() + " tregistration, tTriage, tFirstAssessment, Tr
 		this.isEnteredSystem = isEnteredSystem;
 	}
 
-	public boolean isWasInTest() {
+	public boolean getWasInTest() {
 		return wasInTest;
 	}
 
@@ -732,14 +739,10 @@ System.err.println("WARNING: REACHED TARGET "+ this.getId() + " is at : " +this.
 		this.goToTreatRoom = goToTreatRoom;
 	}
 
-	public boolean isComingFromTest() {
+	public boolean getNeedsTest() {
 		return needsTests;
 	}
 	
-	public boolean getNeedsTests(){
-		return this.needsTests;
-	}
-
 	public void setNeedsTests(boolean needsTests) {
 		this.needsTests = needsTests;
 	}

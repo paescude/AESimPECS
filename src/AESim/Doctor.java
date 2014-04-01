@@ -112,22 +112,25 @@ public abstract class Doctor extends Staff {
 	@Override
 	public void requiredAtWork() {
 		if (this.isInShift() == false) {
-			this.setTimeInitShift(getTime());
-			this.initializeDoctorShiftParams();
-			this.doctorToHandOver= null;
-			System.out.println(this.getId() + " will move to doctors area"
-					+ " method: schedule work"
-					+ " this method is being called by " + this.getId());
-			this.numAvailable=this.multiTaskingFactor;
-			this.setAvailable(true);
-			if(this.isAtDoctorArea==false)
-				this.moveToDoctorsArea();
-			this.decideWhatToDoNext();
+			this.startShift();
 		} else {
 			
 		}
 	}
 	
+	public void startShift(){
+		this.setTimeInitShift(getTime());
+		this.initializeDoctorShiftParams();
+		this.doctorToHandOver= null;
+		System.out.println(this.getId() + " will move to doctors area"
+				+ " method: schedule work"
+				+ " this method is being called by " + this.getId());
+		this.numAvailable=this.multiTaskingFactor;
+		this.setAvailable(true);
+		if(this.isAtDoctorArea==false)
+			this.moveToDoctorsArea();
+		this.decideWhatToDoNext();
+	}
 	private void initializeDoctorShiftParams() {
 		this.numAvailable = this.multiTaskingFactor;
 		//Inicializar variables PECS
@@ -932,7 +935,7 @@ public String marginalZ2 (){
 					}
 				}
 				if (flag && patient != null){
-					System.out.println("Hay que avisarle al otro medico..........");
+					System.out.println(this.getId() + " is going to reassess "  + patient.getId() + " Hay que avisarle al otro medico..........");
 					this.notifyDoctor(patient);
 					this.checkConditionsForReassessment(patient);
 					check = true;
@@ -947,6 +950,7 @@ public String marginalZ2 (){
 	protected void notifyDoctor(Patient patient) {
 		patient.setFromOtherDoctor(true);
 		Doctor otherDoctor = patient.getMyDoctor();
+		//aquí remuevo patients in bed despue´s de back in bed
 		otherDoctor.myPatientsBackInBed.remove(patient);
 		otherDoctor.releaseFromPatient(patient);
 		otherDoctor.myPatientsInBed.remove(patient);
@@ -1006,6 +1010,7 @@ System.out.println("Conditions are ok to start FirstAssement with a RED PATIENT"
 	}
 	
 	protected void startFirstAssessment(Patient patient, Nurse nurse, Resource bed) {
+		printTime();
 		System.out.println("\n\nSTART FIRST ASSESSMENT");
 		System.out.println("START INIT ASSESSMENT " + this.getId() + " " + patient.getId() );
 		printTime();
@@ -1161,7 +1166,7 @@ System.err.println(" ERROR: something is wrong here, no doctor to end fst assess
 		//movePatientBedReassessment(doctor);
 		System.out.println(doctor.getId()
 				+ " is moving to doctors area at end first assessment");
-		if (patient.getNeedsTests()){
+		if (patient.getNeedsTest()){
 			doctor.releaseFromPatient(patient);
 		}		
 		if (!patient.isWaitInCublicle()){
@@ -1176,8 +1181,11 @@ System.err.println(" ERROR: something is wrong here, no doctor to end fst assess
 	public void checkConditionsForReassessment(Patient patient) {
 		if (this.isAvailable()) {
 			if (this.myPatientsBackInBed.contains(patient)) {
-				patient.setReassessmentDone(1);				
+				System.out.println(this.getId() + " contains " + patient.getId() + " then: ");
+				patient.setReassessmentDone(1);	
+				System.out.println(patient.getId()+ " is set reassessment done in true (or 1) AND " + this.getId() + " will start reassessment with this patient" );
 				this.startReassessment(patient);
+				
 			} else {
 				this.decideWhatToDoNext();
 			}	
@@ -1187,7 +1195,7 @@ System.err.println(" ERROR: something is wrong here, no doctor to end fst assess
 	
 	
 	private void startReassessment(Patient patient) {
-		
+		printTime();
 		this.myPatientsBackInBed.remove(patient);
 		patient.setBackInBed(false);
 		//FIXME Aqui peude estar lo de doble in bed! Mirar moveback to bed en patient
@@ -1195,6 +1203,7 @@ System.err.println(" ERROR: something is wrong here, no doctor to end fst assess
 			this.myPatientsInBed.add(patient);
 			// XXX marzo 25 2014 agruegué engage with patient
 			this.engageWithPatient(patient);
+			
 		}
 		System.out.println(this.getId() + " is DOING reassessment to "
 				+ patient.getId());
@@ -1220,7 +1229,7 @@ System.err.println(" ERROR: something is wrong here, no doctor to end fst assess
 		System.out.println(this.getId() + " is setting " + bedPatient.getId()
 				+ " available= false");
 		bedPatient.setAvailable(false);
-		if(patient.isComingFromTest() || patient.isFromOtherDoctor()){
+		if(patient.getNeedsTest() || patient.isFromOtherDoctor()){
 			this.engageWithPatient(patient);	
 		}
 		System.out.println(this.getId() + " will schedule end reassessment");
@@ -1292,7 +1301,7 @@ System.err.println(" ERROR: something is wrong here, no doctor to end fst assess
 		double min = parameters[0];
 		double mean = parameters[1];
 		double max = parameters[2];
-		if (patient.isWasInTest() || patient.isWasInXray()) {
+		if (patient.getWasInTest() || patient.isWasInXray()) {
 			// time=distExponential(min, mean, max);
 			time = MathFunctions.exponential(mean).nextDouble();
 			// this.reAssessmentTSampleExp.add(time);
@@ -1465,16 +1474,17 @@ System.out.println(patient.getId() + " is in system = " + patient.isInSystem());
 		if (route[0] == 0 && route[1] == 0) {
 			patient.setMyBedReassessment(patient.getMyResource());
 			System.out.println(patient.getId() + " starts reassessment immediately");
+			printTime();
 			patient.setNeedsTests(false);
 			patient.setWaitInCublicle(true);
-			System.out.println(doctor.getId() + " is doing reassessment after first assessment " + patient.getId());
+			System.out.println(doctor.getId() + " can do reassessment after first assessment? " + patient.getId() + " doctor patients in mt" + doctor.getPatientsInMultitask().size() + " patient will move back to bed");
 			patient.moveBackToBed(patient.getMyResource());			
 		} else {
 			System.out.println(patient.getId() + " needs tests ");
 			patient.setNeedsTests(true);
 			//10% de los pacientes no bloquean el cubiculo. Los rojos siempre la bloquean.
 			//		TODO este es el valor real	Math.random() < 0.1
-			if (Math.random() < 0.99 && !patient.getMyResource().getResourceType().substring(0, 4).equals("resus")) {
+			if (Math.random() < 0.9 && !patient.getMyResource().getResourceType().substring(0, 4).equals("resus")) {
 				Resource resourceToRelease = patient.getMyResource();	
 				System.out.println(patient.getId() + " does not wait for tests in bed and is releasing: " + resourceToRelease.getId());
 
@@ -1745,6 +1755,7 @@ System.out
 //						TODO hay que verifcar que el dcotor no se vaya sin atender los pacientes en la cama 
 						System.out.println("there is a doctor to take over: "
 								+ doctor.getId());
+						//XXX MARZO 30 2014 AQUÍ DEBE haber algo malo porque los pacientes no empiezan a atenderse rápido 
 						this.handOver(doctor);
 						doctor.decideWhatToDoNext();
 						break;
@@ -1797,6 +1808,7 @@ System.out
 		return doctor;
 	}
 	private void handOver(Doctor doctor) {
+		//TODO marzo 30 yo creo que aquí debería devolver el doctor para preguntar si != nuill que pasó 
 		printTime();
 		System.out.println(this.getId() + " has started method hand over "
 				+ doctor.getId());
@@ -1827,7 +1839,9 @@ System.out
 			}
 			
 			
-		} catch (IllegalArgumentException ex) {
+		}
+		
+		catch (IllegalArgumentException ex) {
 			ex.printStackTrace();
 		}
 

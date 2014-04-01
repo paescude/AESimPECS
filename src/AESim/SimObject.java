@@ -105,8 +105,8 @@ public class SimObject {
 
 		}
 		if (a.length() > 2){
-//			System.out.println("" + this.getId() + " " + name + ": "
-//					+ a.substring(0, a.length() - 2) + "]");
+			System.out.println("" + this.getId() + " " + name + ": "
+					+ a.substring(0, a.length() - 2) + "]");
 		}
 	}
 
@@ -126,8 +126,8 @@ public class SimObject {
 
 		}
 		if (a.length() > 2){
-//			System.out.println("" + this.getId() + " " + name + ": "
-//					+ a.substring(0, a.length() - 2) + "]");
+			System.out.println("" + this.getId() + " " + name + ": "
+					+ a.substring(0, a.length() - 2) + "]");
 		}
 	}
 	
