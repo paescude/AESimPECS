@@ -19,7 +19,7 @@ public class SimObject {
 	protected String id;
 	protected int idNum;	
 	protected Grid<Object> grid;
-	protected GridPoint loc;
+//	protected GridPoint loc;
 	protected Context<Object> context;
 	protected static double minute;
 	protected static int hour;
@@ -237,13 +237,12 @@ public class SimObject {
 	}
 
 	public GridPoint getLoc() {
-		loc = grid.getLocation(this);
-		return loc;
+		return grid.getLocation(this);
 	}
 
-	public void setLoc(GridPoint loc) {
-		this.loc = loc;
-	}
+//	public void setLoc(GridPoint loc) {
+//		this.loc = loc;
+//	}
 
 	public Context<Object> getContext() {
 		context = ContextUtils.getContext(this);

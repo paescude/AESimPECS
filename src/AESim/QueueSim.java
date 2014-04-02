@@ -37,7 +37,7 @@ public class QueueSim extends SimObject{
 		meanWaitTime = 0;
 		totalWaitTime = 0;
 		totalInQueue = 0;
-		setLoc(grid.getLocation(this));
+	//	setLoc(grid.getLocation(this));
 	}
 
 	public Boolean addPatientToQueue(Patient patient) {

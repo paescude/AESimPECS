@@ -13,7 +13,7 @@ public class Agent extends SimObject {
 	public GridPoint moveTo(Grid<Object> grid, GridPoint newLoc) {
 		GridPoint loc = newLoc;
 		grid.moveTo(this, loc.getX(), loc.getY());
-		this.setLoc(grid.getLocation(this));
+//		this.setLoc(grid.getLocation(this));
 		return this.getLoc();
 	}
 

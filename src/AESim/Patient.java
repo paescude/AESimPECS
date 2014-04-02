@@ -295,11 +295,11 @@ System.out.println(this.getId() + " is back to his bed reassessment "+ myBed.get
 				doctor.myPatientsInTests.remove(this);
 				System.out.println(doctor.getId()
 						+ " has removed from his patients in test " + this.getId());
-				if (!this.waitInCublicle){
+	//			if (!this.waitInCublicle){
 					doctor.myPatientsInBed.add(this);					
 					System.out.println(doctor.getId()
 							+ " has added to his patients in bed " + this.getId());
-				}				
+	//			}				
 			}
 			if (!doctor.getMyPatientsBackInBed().contains(this)){
 			doctor.getMyPatientsBackInBed().add(this);}

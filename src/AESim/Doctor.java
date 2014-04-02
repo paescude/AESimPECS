@@ -1136,7 +1136,8 @@ System.out.println(patientToMove.getId()
 		System.out.println("\n \t\t END FIRST ASSESSMENT");
 		Doctor doctor = null;
 		printTime();
-		doctor = chooseDocFirstAssess(patient, doctor);
+//		doctor = chooseDocFirstAssess(patient, doctor);
+		doctor=this;
 		if (doctor != null) {
 			int totalProcess = patient.getTotalProcesses();
 			patient.setTotalProcesses(totalProcess + 1);
@@ -1479,93 +1480,107 @@ System.out.println(patient.getId() + " is in system = " + patient.isInSystem());
 			patient.setWaitInCublicle(true);
 			System.out.println(doctor.getId() + " can do reassessment after first assessment? " + patient.getId() + " doctor patients in mt" + doctor.getPatientsInMultitask().size() + " patient will move back to bed");
 			patient.moveBackToBed(patient.getMyResource());			
-		} else {
-			System.out.println(patient.getId() + " needs tests ");
-			patient.setNeedsTests(true);
-			//10% de los pacientes no bloquean el cubiculo. Los rojos siempre la bloquean.
-			//		TODO este es el valor real	Math.random() < 0.1
-			if (Math.random() < 0.9 && !patient.getMyResource().getResourceType().substring(0, 4).equals("resus")) {
-				Resource resourceToRelease = patient.getMyResource();	
-				System.out.println(patient.getId() + " does not wait for tests in bed and is releasing: " + resourceToRelease.getId());
+		}
+		
+		else {
+			patientNeedsTests(patient, doctor, route);
+		}
+	}
 
-				System.out.println("method end fst assessment " + this.getId()
-						+ " is setting " + resourceToRelease.getId()
-						+ " available= true, because " + patient.getId()
-						+ " does not wait for test in bed");
-				resourceToRelease.setAvailable(true);
-				patient.setWaitInCublicle(false);
-				patient.setIsWaitingBedReassessment(1);
-			} else {
-				System.out.println(patient.getId() + " waits in bed");
-				Resource resourceToGo = patient.getMyResource();
-				patient.setMyBedReassessment(resourceToGo);
-				patient.setWaitInCublicle(true);
-				patient.getMyBedReassessment().setAvailable(false);
-				System.out.println(patient.getId() + " is keeping blocked as bed reassessment " + patient.getMyBedReassessment().getId());
-			}
+	public void patientNeedsTests(Patient patient, Doctor doctor, int[] route) {
+		System.out.println(patient.getId() + " needs tests ");
+		patient.setNeedsTests(true);
+		System.out.println(" method end First assessment"
+				+ doctor.getId() + " will add to his patients in test "
+				+ patient.getId()); 
+		doctor.myPatientsInTests.add(patient);
+		doctor.myPatientsInBed.remove(patient);
+		printElementsArray(doctor.getMyPatientsInTests(),
+				" my patients in test ");
+		
+		
+		
+		
+		
+		//10% de los pacientes no bloquean el cubiculo. Los rojos siempre la bloquean.
+		//		TODO este es el valor real	Math.random() < 0.1
+		if (Math.random() < 0.9 && !patient.getMyResource().getResourceType().substring(0, 4).equals("resus")) {
+			Resource resourceToRelease = patient.getMyResource();	
+			System.out.println(patient.getId() + " does not wait for tests in bed and is releasing: " + resourceToRelease.getId());
 
+			System.out.println("method end fst assessment " + this.getId()
+					+ " is setting " + resourceToRelease.getId()
+					+ " available= true, because " + patient.getId()
+					+ " does not wait for test in bed");
+			resourceToRelease.setAvailable(true);
+			patient.setWaitInCublicle(false);
+			patient.setIsWaitingBedReassessment(1);
+		} 
+		else {
+			System.out.println(patient.getId() + " waits in bed");
+			Resource resourceToGo = patient.getMyResource();
+			patient.setMyBedReassessment(resourceToGo);
+			patient.setWaitInCublicle(true);
+			patient.getMyBedReassessment().setAvailable(false);
+			System.out.println(patient.getId() + " is keeping blocked as bed reassessment " + patient.getMyBedReassessment().getId());
+		}
+
+		printTime();
+		System.out.println(patient.getId()
+				+ " keeps in mind that his assigned doctor is  "
+				+ patient.getMyDoctor().getId());
+
+		doctor.setMyResource(null);
+
+		System.out.println(doctor.getId() +
+				 " method: endFstAssessment"
+				+ " this method is being called by " + this.getId());
+		System.out.println(doctor.getId() + " decides for patient's test");
+		if (route[0] == 1) {
 			printTime();
-			System.out.println(patient.getId()
-					+ " keeps in mind that his assigned doctor is  "
-					+ patient.getMyDoctor().getId());
 
-			doctor.setMyResource(null);
-
-			System.out.println(doctor.getId() + " will move to doctors area"
-					+ " method: endFstAssessment"
-					+ " this method is being called by " + this.getId());
-			System.out.println(doctor.getId() + " decides for patient's test");
-			if (route[0] == 1) {
+			System.out.println(patient.getId() + " needs Xray ");
+			System.out.println(patient.getId() + " goes to qXray");
+			patient.addToQ("qXRay ");
+			// patient.increaseTestCounterXray();
+			patient.setTotalNumTest(patient.getTotalNumTest() + 1);
+			System.out.println(doctor.getId()
+					+ " adds to list of patients in test "
+					+ patient.getId());
+			
+			if (route[1] == 1) {
 				printTime();
-
-				System.out.println(patient.getId() + " needs Xray ");
-				System.out.println(patient.getId() + " goes to qXray");
-				patient.addToQ("qXRay ");
-				// patient.increaseTestCounterXray();
-				patient.setTotalNumTest(patient.getTotalNumTest() + 1);
-				System.out.println(doctor.getId()
-						+ " adds to list of patients in test "
-						+ patient.getId());
-				System.out.println(" method end First assessment"
-						+ doctor.getId() + " will add to his patients in test "
-						+ patient.getId());
-				doctor.myPatientsInTests.add(patient);
-				printElementsArray(doctor.getMyPatientsInTests(),
-						" my patients in test ");
-				if (route[1] == 1) {
-					printTime();
-					patient.setNextProc(1);
-					System.out.println(patient.getId()
-							+ " will need test after Xray");
-					// patient goes to test after xray
-				} else {
-					printTime();
-					patient.setNextProc(2);
-					System.out.println(patient.getId()
-							+ " will go back to bed after Xray");
-					// patient goes back to bed after xray
-				}
-			} else if (route[0] == 0 && route[1] == 1) {
-				printTime();
-
+				patient.setNextProc(1);
 				System.out.println(patient.getId()
-						+ " needs test and didn't need xRay ");
-				System.out.println(doctor.getId()
-						+ " adds to list of patients in test "
-						+ patient.getId());
-				doctor.myPatientsInTests.add(patient);
-				patient.addToQ("qTest ");
-				// patient.increaseTestCounterTest();
+						+ " will need test after Xray");
+				// patient goes to test after xray
+			} else {
+				printTime();
 				patient.setNextProc(2);
-				patient.setTotalNumTest(patient.getTotalNumTest() + 1);
-				System.out.println(" method end First assessment"
-						+ doctor.getId()
-						+ " has added to his patients in test "
-						+ patient.getId());
-				printElementsArray(doctor.getMyPatientsInTests(),
-						" my patients in test ");
-
+				System.out.println(patient.getId()
+						+ " will go back to bed after Xray");
+				// patient goes back to bed after xray
 			}
+		} else if (route[0] == 0 && route[1] == 1) {
+			printTime();
+
+			System.out.println(patient.getId()
+					+ " needs test and didn't need xRay ");
+			System.out.println(doctor.getId()
+					+ " adds to list of patients in test "
+					+ patient.getId());
+			doctor.myPatientsInTests.add(patient);
+			patient.addToQ("qTest ");
+			// patient.increaseTestCounterTest();
+			patient.setNextProc(2);
+			patient.setTotalNumTest(patient.getTotalNumTest() + 1);
+			System.out.println(" method end First assessment"
+					+ doctor.getId()
+					+ " has added to his patients in test "
+					+ patient.getId());
+			printElementsArray(doctor.getMyPatientsInTests(),
+					" my patients in test ");
+
 		}
 	}
 
@@ -1587,25 +1602,25 @@ System.out.println(patient.getId() + " is in system = " + patient.isInSystem());
 
 	private Doctor chooseDocFirstAssess(Patient patient, Doctor doctor) {
 		if (patient == null) {
-System.err
-					.println("\n ERROR: Shouldn't be happening, patient is null at end of fst assessment");
+			System.err
+			.println("\n ERROR: Shouldn't be happening, patient is null at end of fst assessment");
 		} else {
 			if (patient.getMyDoctor() == this && (this.isInShift())) {
-System.out
-						.println(" the method end fst assessment is being called by "
-								+ this.getId()
-								+ " that is the same doctor the patien had in mind ");
-System.out
-						.println(this.getId()
-								+ " is in shift, then it is possible to start end fst assessment");
+				System.out
+				.println(" the method end fst assessment is being called by "
+						+ this.getId()
+						+ " that is the same doctor the patien had in mind ");
+				System.out
+				.println(this.getId()
+						+ " is in shift, then it is possible to start end fst assessment");
 				doctor = this;
 			} else {
 				if (patient.getMyDoctor() != null)
 					if (patient.getMyDoctor().isInShift()) {
-System.out
-								.println(patient.getMyDoctor().getId()
-										+ " is not in shift but is ending the fst assessment with "
-										+ patient.getId());
+						System.out
+						.println(patient.getMyDoctor().getId()
+								+ " is not in shift but is ending the fst assessment with "
+								+ patient.getId());
 						doctor = patient.getMyDoctor();
 					} else {
 						doctor = patient.getMyDoctor();

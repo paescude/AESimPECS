@@ -20,7 +20,7 @@ public class Clerk extends Staff {
 	public Clerk(Grid<Object> grid, int idNum, int x, int y, int multiTasking) {
 		this.grid = grid;
 		this.id = "Clerk " + idNum;
-		this.loc = getLoc();
+	//	this.loc = getLoc();
 		this.idNum = idNum;
 		this.numAvailable = 1;
 		this.initPosX = x;
@@ -29,7 +29,6 @@ public class Clerk extends Staff {
 		this.available = true;
 		this.inShift = false;
 		this.patientsInMultitask = new ArrayList<Patient>();
-		this.getLoc(grid);
 	}
 	
 	@Override
@@ -201,11 +200,6 @@ public class Clerk extends Staff {
 //		if (this.inShift){
 //			startRegistration();
 //		}
-	}
-
-	private GridPoint getLoc(Grid<Object> grid) {
-		loc = grid.getLocation(this);
-		return loc;
 	}
 
 	public static void initSaticVars() {
