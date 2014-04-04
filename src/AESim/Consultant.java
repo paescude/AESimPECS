@@ -202,7 +202,7 @@ capacity[0]--;
 		return parameters;
 	}
 
-	private Doctor checkForAnyAvailableDoctor() {
+	protected Doctor checkForAnyAvailableDoctor() {
 		Doctor shoAvailable = null;
 		System.out
 				.println(" checks if there is any sho available to start init assessment ");

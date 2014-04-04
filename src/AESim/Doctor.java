@@ -894,10 +894,10 @@ public String marginalZ2 (){
 			checked = true;
 
 		} else {
-			System.out.println(this.getId() + "");
-			if (this.allMyPatients != null){
-				printElementsArray(allMyPatients, " in check if start init assessment patients:");
-			}			
+//			System.out.println(this.getId() + "");
+//			if (this.allMyPatients != null){
+//				printElementsArray(allMyPatients, " All my patients, in check if start init assessment patients:");
+//			}			
 			if (!this.isAtDoctorArea){
 				System.out.println(this.getId() + " is available and...decides what to do, moving to docs area when start Init assessment");
 				this.moveToDoctorsArea();}
@@ -956,12 +956,15 @@ public String marginalZ2 (){
 		otherDoctor.myPatientsInBed.remove(patient);
 		System.out.println(otherDoctor.getId() + " has removed from bed: " + patient.getId());
 
-		
-		this.myPatientsBackInBed.add(patient);				
+		if (!this.getMyPatientsBackInBed().contains(patient)){
+			this.myPatientsBackInBed.add(patient);}
+						
 		patient.setMyDoctor(this);
-		this.myPatientsInBed.add(patient);
+		if (!this.getMyPatientsInBed().contains(patient)){
+			this.myPatientsInBed.add(patient);}
+		
 		// XXX fecha 25 marzo 2014 (agregué engage with patient aquí)
-		this.engageWithPatient(patient);
+	//	this.engageWithPatient(patient);
 		System.out.println(this.getId() + " notified " + otherDoctor.getId() + " that he get the patient " + patient.getId());
 		System.out.println("and added the patient to his PatientsBackInBed");
 	}
@@ -1000,7 +1003,19 @@ System.out.println("There is no nurse");
 		}
 		if (conditionsOk && !isRedPatient){
 System.out.println("Conditions are ok to start FirstAssessment");
-			this.startFirstAssessment(patient, nurse, bed);
+			if (this instanceof Consultant) {
+				Doctor sho = ((Consultant) this).checkForAnyAvailableDoctor();
+				if (sho != null){
+					sho.startFirstAssessment(patient, nurse, bed);
+				}
+				else {
+					this.startFirstAssessment(patient, nurse, bed);
+				}
+			}
+			
+			else {
+				this.startFirstAssessment(patient, nurse, bed);
+			}
 		} 
 		else if (isRedPatient && isAConsultant && conditionsOk){
 System.out.println("Conditions are ok to start FirstAssement with a RED PATIENT");
@@ -1036,7 +1051,9 @@ System.out.println("Conditions are ok to start FirstAssement with a RED PATIENT"
 		QueueSim queue = patient.getCurrentQueue();
 		queue.removeFromQueue(patient);
 		queue.elementsInQueue();
-		this.myPatientsInBed.add(patient);		
+		if (!this.getMyPatientsInBed().contains(patient)){
+			this.myPatientsInBed.add(patient);}
+				
 		this.engageWithPatient(patient);
 		
 		//XXX 28/02/2014: Copiamos X1MyNumPatients del archivo viejo
@@ -1201,7 +1218,9 @@ System.err.println(" ERROR: something is wrong here, no doctor to end fst assess
 		patient.setBackInBed(false);
 		//FIXME Aqui peude estar lo de doble in bed! Mirar moveback to bed en patient
 		if(!patient.isWaitInCublicle()){
-			this.myPatientsInBed.add(patient);
+			if (!this.getMyPatientsInBed().contains(patient)){
+				this.myPatientsInBed.add(patient);}
+			
 			// XXX marzo 25 2014 agruegué engage with patient
 			this.engageWithPatient(patient);
 			
@@ -1214,9 +1233,11 @@ System.err.println(" ERROR: something is wrong here, no doctor to end fst assess
 		if (patient.getMyBedReassessment() == null || patient.getId() == null ){
 			System.out.println("Que paso con mi camitaaa :(");
 		}
+		
 		System.out.println(patient.getId() + " is at "
 				+ patient.getMyBedReassessment().getId() + " loc "
 				+ patient.getLoc());
+	
 		Resource bedPatient = patient.getMyBedReassessment();
 		
 		System.out.println(this.getId() + " will go to " + bedPatient.getId());
@@ -1493,15 +1514,14 @@ System.out.println(patient.getId() + " is in system = " + patient.isInSystem());
 		System.out.println(" method end First assessment"
 				+ doctor.getId() + " will add to his patients in test "
 				+ patient.getId()); 
-		doctor.myPatientsInTests.add(patient);
+		if (!doctor.getMyPatientsInTests().contains(patient)){
+			doctor.myPatientsInTests.add(patient);}
+		
 		doctor.myPatientsInBed.remove(patient);
 		printElementsArray(doctor.getMyPatientsInTests(),
 				" my patients in test ");
 		
-		
-		
-		
-		
+				
 		//10% de los pacientes no bloquean el cubiculo. Los rojos siempre la bloquean.
 		//		TODO este es el valor real	Math.random() < 0.1
 		if (Math.random() < 0.9 && !patient.getMyResource().getResourceType().substring(0, 4).equals("resus")) {
@@ -1535,6 +1555,17 @@ System.out.println(patient.getId() + " is in system = " + patient.isInSystem());
 		System.out.println(doctor.getId() +
 				 " method: endFstAssessment"
 				+ " this method is being called by " + this.getId());
+		
+		
+		dedideWhichTest(patient, doctor, route);
+	}
+
+	/**
+	 * @param patient
+	 * @param doctor
+	 * @param route
+	 */
+	public void dedideWhichTest(Patient patient, Doctor doctor, int[] route) {
 		System.out.println(doctor.getId() + " decides for patient's test");
 		if (route[0] == 1) {
 			printTime();
@@ -1569,7 +1600,9 @@ System.out.println(patient.getId() + " is in system = " + patient.isInSystem());
 			System.out.println(doctor.getId()
 					+ " adds to list of patients in test "
 					+ patient.getId());
-			doctor.myPatientsInTests.add(patient);
+			if (!doctor.getMyPatientsInTests().contains(patient)){
+				doctor.myPatientsInTests.add(patient);}
+			
 			patient.addToQ("qTest ");
 			// patient.increaseTestCounterTest();
 			patient.setNextProc(2);

@@ -76,10 +76,12 @@ public class Sho extends Doctor {
 	public void decideWhatToDo() {
 		// TODO Auto-generated method stub
 		System.out.println(" checks if there is any sho available to start init assessment ");
-		if (!this.checkIfStartInitAssessment()) {
-			if (!this.isAtDoctorArea) {
-				System.out.println(this.getId()+" is moving to docs area because when decide what to do has nothing to do ");
-				this.moveToDoctorsArea();
+		if (!this.checkIfStartReassessment()){
+			if (!this.checkIfStartInitAssessment()) {
+				if (!this.isAtDoctorArea) {
+					System.out.println(this.getId()+" is moving to docs area because when decide what to do has nothing to do ");
+					this.moveToDoctorsArea();
+				}
 			}
 		}
 	}	
