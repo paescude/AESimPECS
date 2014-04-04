@@ -835,6 +835,8 @@ public String marginalZ2 (){
 //		} else {
 //			this.setAvailable(false);
 //		}
+		
+		movePatientBedReassessment(this);
 		this.requiredAtWork = (int) this.getMyShiftMatrix()[getHour()][getDay()];
 		if (this.requiredAtWork == 0) {
 			boolean any = false;
@@ -857,7 +859,8 @@ public String marginalZ2 (){
 			if (this.patientsInMultitask.size() < this.multiTaskingFactor){
 				if (!this.checkIfStartReassessment()){
 					if (!this.checkIfStartInitAssessment()) {
-						this.moveToDoctorsArea();
+//						this.moveToDoctorsArea();
+						this.decideWhatToDo();
 					}
 				}
 			}
@@ -1184,13 +1187,16 @@ System.err.println(" ERROR: something is wrong here, no doctor to end fst assess
 		//movePatientBedReassessment(doctor);
 		System.out.println(doctor.getId()
 				+ " is moving to doctors area at end first assessment");
-		if (patient.getNeedsTest()){
+		
 			doctor.releaseFromPatient(patient);
+			if (patient.getNeedsTest()){
+				patient.setBackInBed(true);
 		}		
-		if (!patient.isWaitInCublicle()){
+		
+//		if (!patient.isWaitInCublicle()){
 			doctor.myPatientsInBed.remove(patient);
 			System.out.println(doctor.getId() + " has removed from bed: " + patient.getId());
-		}
+//		}
 		
 
 	}
@@ -1396,7 +1402,7 @@ System.out.println("Que pasoooo! Donde esta mi camita :(");
 			}
 		}
 		this.removePatientFromDepartment(patient);
-		movePatientBedReassessment(doctor);
+//		movePatientBedReassessment(doctor);
 		System.out.println(doctor.getId()
 				+ " is moving to doctors area at end re-assessment");
 		//		doctor.setStartedReassessment(0);
