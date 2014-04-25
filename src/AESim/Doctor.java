@@ -708,27 +708,27 @@ public String marginalZ2 (){
 		return maxTime;
 	}
 
-//	
-//	public int calcMaxWPECS() {
-//		this.calcPECSvariables();
-//		double maxWPECS = this.getW1Fatigue();
-//		int decision = 1;
-//		if (maxWPECS < this.getW2Stress()) {
-//			maxWPECS = this.getW2Stress();
-//			decision = 2;
-//		} else if (maxWPECS < this.getW3WillOfKnowledge()) {
-//			maxWPECS = this.getW3WillOfKnowledge();
-//			decision = 3;
-//		}
-//
-//		else if (maxWPECS < this.getW4SocialDesire()) {
-//			maxWPECS = this.getW4SocialDesire();
-//			decision = 4;
-//		}
-//
-//		return decision;
-//	}
-//	
+	
+	public int calcMaxWPECS() {
+		this.calcPECSvariables();
+		double maxWPECS = this.getW1Fatigue();
+		int decision = 1;
+		if (maxWPECS < this.getW2Stress()) {
+			maxWPECS = this.getW2Stress();
+			decision = 2;
+		} else if (maxWPECS < this.getW3WillOfKnowledge()) {
+			maxWPECS = this.getW3WillOfKnowledge();
+			decision = 3;
+		}
+
+		else if (maxWPECS < this.getW4SocialDesire()) {
+			maxWPECS = this.getW4SocialDesire();
+			decision = 4;
+		}
+
+		return decision;
+	}
+	
 	public double getRatioTestEachPatient(Patient patient) {
 
 		int maxTest = 4;
@@ -815,28 +815,11 @@ public String marginalZ2 (){
 
 	@Override
 	public void decideWhatToDoNext() {
-//		System.out.println("when deciding what to do next, " + this.getId()
-//				+ " num of patients in multitask: "
-//				+ this.patientsInMultitask.size() + ", multitask factor: "
-//				+ this.multiTaskingFactor);
-//		if (this.patientsInMultitask.size() < this.multiTaskingFactor) {
-//			printTime();
-//			System.out.println(this.getId() + " decides what to do next");
-//			this.requiredAtWork = (int) this.getMyShiftMatrix()[getHour()][getDay()];
-//			if (requiredAtWork == 0) {
-//				this.moveOut();
-//			} else {
-//				if (this.available) {
-//					if (!this.checkIfStartReassessment()){
-//						this.decideWhatToDo();
-//					}
-//				}
-//			}
-//		} else {
-//			this.setAvailable(false);
-//		}
-		
+//XXX BORRÉ UN MÉTODO
+		//cada vez que un doctor puede busca una cama para lso pacienets que esperan por bed reassessment 
 		movePatientBedReassessment(this);
+		
+		
 		this.requiredAtWork = (int) this.getMyShiftMatrix()[getHour()][getDay()];
 		if (this.requiredAtWork == 0) {
 			boolean any = false;
