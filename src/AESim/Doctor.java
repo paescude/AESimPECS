@@ -716,18 +716,23 @@ public String marginalZ2 (){
 		if (maxWPECS < this.getW2Stress()) {
 			maxWPECS = this.getW2Stress();
 			decision = 2;
-		} else if (maxWPECS < this.getW3WillOfKnowledge()) {
+		}  
+			
+		if (maxWPECS < this.getW3WillOfKnowledge()) {
 			maxWPECS = this.getW3WillOfKnowledge();
 			decision = 3;
 		}
 
-		else if (maxWPECS < this.getW4SocialDesire()) {
+		if (maxWPECS < this.getW4SocialDesire()) {
 			maxWPECS = this.getW4SocialDesire();
 			decision = 4;
 		}
-
+System.out.println(" decision is " + decision);
 		return decision;
 	}
+	
+	
+	
 	
 	public double getRatioTestEachPatient(Patient patient) {
 
@@ -840,7 +845,7 @@ public String marginalZ2 (){
 		}
 		else {
 			if (this.patientsInMultitask.size() < this.multiTaskingFactor){
-				
+				int decision= this.calcMaxWPECS();
 				
 //				if (!this.checkIfStartReassessment()){
 //					if (!this.checkIfStartInitAssessment()) {
