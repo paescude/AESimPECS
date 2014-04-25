@@ -840,15 +840,20 @@ public String marginalZ2 (){
 		}
 		else {
 			if (this.patientsInMultitask.size() < this.multiTaskingFactor){
-				if (!this.checkIfStartReassessment()){
-					if (!this.checkIfStartInitAssessment()) {
+				
+				
+//				if (!this.checkIfStartReassessment()){
+//					if (!this.checkIfStartInitAssessment()) {
 //						this.moveToDoctorsArea();
 						this.decideWhatToDo();
-					}
-				}
+//					}
+//				}
 			}
 		}
 	}
+	
+	
+	
 	
 	protected boolean checkIfStartInitAssessment() {
 		boolean checked = false;
