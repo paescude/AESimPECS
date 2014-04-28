@@ -24,7 +24,10 @@ public abstract class Staff extends Agent {
 	protected double nextEndingTime;
 	protected int multiTaskingFactor;
 	protected ArrayList<Patient> patientsInMultitask;
+	protected boolean isScheduledToStop= false;
+	protected double durationOfRest=20;
 	protected static final ArrayList<Patient> patientsRedTriage = new ArrayList<>();
+	
 
 	protected void moveOut() {
 		resetVariables();
@@ -97,12 +100,13 @@ public abstract class Staff extends Agent {
 					this.setAvailable(false);
 				}
 			} else {
-				if (this.numAvailable < this.multiTaskingFactor) {
-					this.numAvailable += 1;
-					setAvailable(true);
+				if(!this.isScheduledToStop){
+					if (this.numAvailable < this.multiTaskingFactor) {
+						this.numAvailable += 1;
+						setAvailable(true);
+					}
 				}
 			}
-
 		}
 	}
 
@@ -206,7 +210,80 @@ public abstract class Staff extends Agent {
 		// + " has finished the shift and will move out at " +getTime());
 		this.moveOut();
 	}
+	
+	//XXX programamos este metodo en  28/04/2014
+	protected void scheduleStartBreak(double maxPatientEndingTime) {
+		this.setScheduledToStop(true);
+		this.setAvailable(false);
+		
+		// System.out.println(" current time: " + getTime() + " " +this.getId()
+		// + " is supposed to move out at: " + timeEnding);
+		ISchedule schedule = repast.simphony.engine.environment.RunEnvironment
+				.getInstance().getCurrentSchedule();
+		ScheduleParameters scheduleParams = ScheduleParameters
+				.createOneTime(maxPatientEndingTime);
+		EndBreak actionEnd = new EndBreak(this);
 
+		schedule.schedule(scheduleParams, actionEnd);
+	}
+
+	protected static class StartBreak implements IAction {
+		private Staff staff;
+
+		public StartBreak(Staff staff) {
+			this.staff = staff;
+		}
+
+		@Override
+		public void execute() {
+			staff.startBreak();
+			
+		}
+
+	}
+
+	protected void startBreak() {
+				
+		
+	}
+
+	
+	
+	protected void scheduleEndBreak(double breakDuration) {
+		// System.out.println(" current time: " + getTime() + " " +this.getId()
+		// + " is supposed to move out at: " + timeEnding);
+		ISchedule schedule = repast.simphony.engine.environment.RunEnvironment
+				.getInstance().getCurrentSchedule();
+		ScheduleParameters scheduleParams = ScheduleParameters
+				.createOneTime(breakDuration);
+		EndBreak actionEnd = new EndBreak(this);
+
+		schedule.schedule(scheduleParams, actionEnd);
+	}
+
+	protected static class EndBreak implements IAction {
+		private Staff staff;
+
+		public EndBreak(Staff staff) {
+			this.staff = staff;
+		}
+
+		@Override
+		public void execute() {
+			staff.endBreak();
+			
+		}
+
+	}
+
+	protected void endBreak() {
+		
+	}
+
+	
+	
+	
+	
 	protected void canMoveOut() {
 		// System.out
 		// .println(this.getId()
@@ -475,6 +552,12 @@ public abstract class Staff extends Agent {
 
 	public void setPatientsInMultitask(ArrayList<Patient> patientsInMultitask) {
 		this.patientsInMultitask = patientsInMultitask;
+	}
+	public boolean isScheduledToStop() {
+		return isScheduledToStop;
+	}
+	public void setScheduledToStop(boolean isScheduledToStop) {
+		this.isScheduledToStop = isScheduledToStop;
 	}
 
 }

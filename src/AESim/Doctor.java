@@ -175,270 +175,6 @@ public abstract class Doctor extends Staff {
 	}
 	
 	
-	
-	
-//	@ScheduledMethod(start = 0, priority = 90, shuffle = false, pick = 1)
-//	public void initNumDocs() {
-//		printTime();
-//System.out.println("When simulation starts, the conditions are " 			+ this.getId());
-////		GridPoint currentLoc = grid.getLocation(this);
-////		int currentX = currentLoc.getX();
-////		int currentY = currentLoc.getY();
-////
-////		if (currentX == 19) {
-////			this.setAvailable(false);
-////			this.setInShift(false);
-//System.out.println(this.getId()
-////					+ " is not in shift and is not available, time: "
-////					+ getTime());
-////
-////		} else if (currentY == 4) {
-////			this.setAvailable(true);
-////			this.setInShift(true);
-//System.out.println(this.getId()
-////					+ " is in shift and is available, time: " + getTime());
-//		}
-//
-//		this.setX1MyNumPatientsSeen(0);
-//		this.setX2MyTimeWorkedInShift(0);// this time
-//											// is in
-//											// hours
-//		this.setX3TriageMaxAmongMyPatients(1);
-//		this.setX4MyPatientsAverageTimeInSys(0);
-//		this.setX5RatioTestMaxTestMyPatients(1); // TODO see how this can be
-//													// calculated individually
-//													// to obtain a knowledge of
-//													// each patient
-//		this.setX6MyTotalTimeWorkedInDpmnt(0);
-//		this.setX7MyPatientsMaxTimeInSys(0);
-//
-//		int id = this.getIdNum();
-//		float sum = 0;
-//		switch (id) {
-//
-//		case 0:
-//			this.setMyShiftMatrix(Reader.getMatrixSHOD0());
-//			// this doctor is a consultant, minimum experience is 8 years
-//			for (int i = 0; i < 7; i++) {
-//				sum = 0;
-//				for (int j = 0; j < 23; j++) {
-//					sum = sum + Reader.getMatrixSHOD0()[j][i];
-//				}
-//				this.durationOfShift[i] = sum;
-//			}
-//			this.setC1MyMaxPatientHour(10);
-//			this.setC2MyDurationShift(this.durationOfShift[getDay()]);
-//			this.setC3LogisticCalmC(3);
-//			this.setC4LogisticKnowledgeC(0.15);
-//			this.setC5LogisticExperienceC(-50);
-//			this.setC6LogisticReputationC(2.5);
-//			this.setAlpha1Calmness(0.0002);
-//			this.setAlpha2Knowledge(1);
-//			this.setAlpha3Experience(0.0175);
-//			break;
-//
-//		case 1:
-//			this.setMyShiftMatrix(Reader.getMatrixSHOD1());
-//			// sho minim. exp is 2 years (middle grade 6)
-//			// doctor middle experience
-//			for (int i = 0; i < 7; i++) {
-//				sum = 0;
-//				for (int j = 0; j < 23; j++) {
-//					sum = sum + Reader.getMatrixSHOD1()[j][i];
-//				}
-//				this.durationOfShift[i] = sum;
-//			}
-//
-//			this.setC1MyMaxPatientHour(8);
-//			this.setC2MyDurationShift(this.durationOfShift[getDay()]);
-//			this.setC3LogisticCalmC(2);
-//			this.setC4LogisticKnowledgeC(0.5);
-//			this.setC5LogisticExperienceC(0);
-//			this.setC6LogisticReputationC(2.167);
-//			this.setAlpha1Calmness(0.0002);
-//			this.setAlpha2Knowledge(1);
-//			this.setAlpha3Experience(0.0175);
-//			break;
-//
-//		case 2:
-//			this.setMyShiftMatrix(Reader.getMatrixSHOD2());
-//
-//			for (int i = 0; i < 7; i++) {
-//				sum = 0;
-//				for (int j = 0; j < 23; j++) {
-//					sum = sum + Reader.getMatrixSHOD2()[j][i];
-//				}
-//				this.durationOfShift[i] = sum;
-//			}
-//			this.setC1MyMaxPatientHour(8);
-//			this.setC2MyDurationShift(this.durationOfShift[getDay()]);
-//			this.setC3LogisticCalmC(2);
-//			this.setC4LogisticKnowledgeC(0.5);
-//			this.setC5LogisticExperienceC(0);
-//			this.setC6LogisticReputationC(2.167);
-//			this.setAlpha1Calmness(0.0002);
-//			this.setAlpha2Knowledge(1);
-//			this.setAlpha3Experience(0.0175);
-//			break;
-//
-//		case 3:
-//			this.setMyShiftMatrix(Reader.getMatrixSHOD3());
-//
-//			for (int i = 0; i < 7; i++) {
-//				sum = 0;
-//				for (int j = 0; j < 23; j++) {
-//					sum = sum + Reader.getMatrixSHOD3()[j][i];
-//				}
-//				this.durationOfShift[i] = sum;
-//			}
-//			this.setC1MyMaxPatientHour(4);
-//			this.setC2MyDurationShift(this.durationOfShift[getDay()]);
-//			this.setC3LogisticCalmC(1);
-//			this.setC4LogisticKnowledgeC(0.5);
-//			this.setC5LogisticExperienceC(200);
-//			this.setC6LogisticReputationC(1.167);
-//			this.setAlpha1Calmness(0.0002);
-//			this.setAlpha2Knowledge(1);
-//			this.setAlpha3Experience(0.075);
-//			break;
-//
-//		case 4:
-//			this.setMyShiftMatrix(Reader.getMatrixSHOD4());
-//
-//			for (int i = 0; i < 7; i++) {
-//				sum = 0;
-//				for (int j = 0; j < 23; j++) {
-//					sum = sum + Reader.getMatrixSHOD4()[j][i];
-//				}
-//				this.durationOfShift[i] = sum;
-//			}
-//			this.setC1MyMaxPatientHour(8);
-//			this.setC2MyDurationShift(this.durationOfShift[getDay()]);
-//			this.setC3LogisticCalmC(2);
-//			this.setC4LogisticKnowledgeC(0.5);
-//			this.setC5LogisticExperienceC(0);
-//			this.setC6LogisticReputationC(2.167);
-//			this.setAlpha1Calmness(0.0002);
-//			this.setAlpha2Knowledge(1);
-//			this.setAlpha3Experience(0.0175);
-//			break;
-//
-//		case 5:
-//			this.setMyShiftMatrix(Reader.getMatrixSHOD5());
-//
-//			for (int i = 0; i < 7; i++) {
-//				sum = 0;
-//				for (int j = 0; j < 23; j++) {
-//					sum = sum + Reader.getMatrixSHOD5()[j][i];
-//				}
-//				this.durationOfShift[i] = sum;
-//			}
-//			this.setC1MyMaxPatientHour(4);
-//			this.setC2MyDurationShift(this.durationOfShift[getDay()]);
-//			this.setC3LogisticCalmC(1);
-//			this.setC4LogisticKnowledgeC(0.5);
-//			this.setC5LogisticExperienceC(200);
-//			this.setC6LogisticReputationC(1.167);
-//			this.setAlpha1Calmness(0.0002);
-//			this.setAlpha2Knowledge(1);
-//			this.setAlpha3Experience(0.075);
-//			break;
-//
-//		case 6:
-//			this.setMyShiftMatrix(Reader.getMatrixSHOD6());
-//
-//			for (int i = 0; i < 7; i++) {
-//				sum = 0;
-//				for (int j = 0; j < 23; j++) {
-//					sum = sum + Reader.getMatrixSHOD6()[j][i];
-//				}
-//				this.durationOfShift[i] = sum;
-//			}
-//			this.setC1MyMaxPatientHour(4);
-//			this.setC2MyDurationShift(this.durationOfShift[getDay()]);
-//			this.setC3LogisticCalmC(1);
-//			this.setC4LogisticKnowledgeC(0.5);
-//			this.setC5LogisticExperienceC(200);
-//			this.setC6LogisticReputationC(1.167);
-//			this.setAlpha1Calmness(0.0002);
-//			this.setAlpha2Knowledge(1);
-//			this.setAlpha3Experience(0.075);
-//			break;
-//
-//		case 7:
-//			this.setMyShiftMatrix(Reader.getMatrixSHOD7());
-//
-//			for (int i = 0; i < 7; i++) {
-//				sum = 0;
-//				for (int j = 0; j < 23; j++) {
-//					sum = sum + Reader.getMatrixSHOD7()[j][i];
-//				}
-//				this.durationOfShift[i] = sum;
-//			}
-//			this.setC1MyMaxPatientHour(6);
-//			this.setC2MyDurationShift(this.durationOfShift[getDay()]);
-//			this.setC3LogisticCalmC(1.33);
-//			this.setC4LogisticKnowledgeC(0.5);
-//			this.setC5LogisticExperienceC(50);
-//			this.setC6LogisticReputationC(1.5);
-//			this.setAlpha1Calmness(0.0002);
-//			this.setAlpha2Knowledge(1);
-//			this.setAlpha3Experience(0.0125);
-//			break;
-//
-//		case 8:
-//			this.setMyShiftMatrix(Reader.getMatrixSHOD8());
-//
-//			for (int i = 0; i < 7; i++) {
-//				sum = 0;
-//				for (int j = 0; j < 23; j++) {
-//					sum = sum + Reader.getMatrixSHOD8()[j][i];
-//				}
-//				this.durationOfShift[i] = sum;
-//			}
-//			this.setC1MyMaxPatientHour(6);
-//			this.setC2MyDurationShift(this.durationOfShift[getDay()]);
-//			this.setC3LogisticCalmC(1.33);
-//			this.setC4LogisticKnowledgeC(0.5);
-//			this.setC5LogisticExperienceC(50);
-//			this.setC6LogisticReputationC(1.5);
-//			this.setAlpha1Calmness(0.0002);
-//			this.setAlpha2Knowledge(1);
-//			this.setAlpha3Experience(0.0125);
-//			break;
-//
-//		case 9:
-//			this.setMyShiftMatrix(Reader.getMatrixSHOD9());
-//
-//			for (int i = 0; i < 7; i++) {
-//				sum = 0;
-//				for (int j = 0; j < 23; j++) {
-//					sum = sum + Reader.getMatrixSHOD9()[j][i];
-//				}
-//				this.durationOfShift[i] = sum;
-//			}
-//			this.setC1MyMaxPatientHour(6);
-//			this.setC2MyDurationShift(this.durationOfShift[getDay()]);
-//			this.setC3LogisticCalmC(1.33);
-//			this.setC4LogisticKnowledgeC(0.5);
-//			this.setC5LogisticExperienceC(50);
-//			this.setC6LogisticReputationC(1.5);
-//			this.setAlpha1Calmness(0.0002);
-//			this.setAlpha2Knowledge(1);
-//			this.setAlpha3Experience(0.0125);
-//			break;
-//		}
-//
-//System.out.println(this.getId() + " shift's duration [" + this.durationOfShift[0] + " ," + this.durationOfShift[1]				+ "," + this.durationOfShift[2] + " ,"				+ this.durationOfShift[3] + " ," + this.durationOfShift[4]				+ ", " + this.durationOfShift[5] + ", "				+ this.durationOfShift[6] + "]");
-//	}
-
-	
-	
-	
-	
-	
-	
-	
 	@ScheduledMethod(start = 5, interval = 10, priority = 60, shuffle = false, pick = 1)
 	public void calcPECSvariables() {
 		
@@ -688,6 +424,29 @@ public String marginalZ2 (){
 		}
 		return aveTimeInSys;
 	}
+	
+	
+	
+	@Override
+	protected void startBreak() {
+		printTime();
+		System.out.println(this.getId() + " is starting a break. Num available= " + this.getNumAvailable());
+		this.scheduleEndBreak(this.durationOfRest);
+		this.moveToDoctorsArea();
+		
+		
+	}
+	
+	@Override
+	protected void endBreak() {
+		printTime();
+		System.out.println(this.getId() + " is ending the break");
+		this.setScheduledToStop(false);
+		this.setNumAvailable(this.getMultiTaskingFactor());
+		this.setAvailable(true);
+		this.setX2MyTimeWorkedInShift(this.x2MyTimeWorkedInShift/2);
+		this.decideWhatToDoNext();
+	}
 
 	public double getMaxTSysAllMyPatientsHours() {
 		ArrayList<Patient> allMyPatientsV = this.getAllMyPatients();
@@ -846,6 +605,13 @@ System.out.println(" decision is " + decision);
 		else {
 			if (this.patientsInMultitask.size() < this.multiTaskingFactor){
 				int decision= this.calcMaxWPECS();
+				//XXX PARAR POR FATIGA
+				
+				if (decision==1){
+					this.rest();
+				
+				}
+				else {
 				
 //				if (!this.checkIfStartReassessment()){
 //					if (!this.checkIfStartInitAssessment()) {
@@ -854,12 +620,31 @@ System.out.println(" decision is " + decision);
 //					}
 //				}
 			}
+			}
 		}
 	}
 	
 	
 	
 	
+	public void rest() {
+		double maxEndingTime= this.calculateMaxEndingTime(); 
+		if (maxEndingTime<getTime()){
+			maxEndingTime= getTime();
+		}
+		double timeEndingShift=  this.timeInitShift+ (double) this.durationOfShift[getWeek()][getHour()];
+		
+		if (timeEndingShift> (maxEndingTime+durationOfRest)){
+			scheduleStartBreak(maxEndingTime);
+			
+		}
+		
+		else {
+			this.decideWhatToDo();
+		}
+		
+	}
+
 	protected boolean checkIfStartInitAssessment() {
 		boolean checked = false;
 		Patient patient = null;
@@ -1706,6 +1491,7 @@ System.out.println(this.getId() + " IS MOVING OUT ");
 		return maxEndingTime;
 	}
 	
+	@Override
 	protected void canNotMoveOut(){
 		double maxEndingTime= this.calculateMaxEndingTime(); 
 		if (getTime() < maxEndingTime) {
@@ -1716,6 +1502,7 @@ System.out
 			double timeEnding = maxEndingTime;
 			this.scheduleEndShift(timeEnding+5);
 			this.setAvailable(false);
+		
 			//this.setPatientsInMultitask(allMyPatients);
 		}
 	}
@@ -1965,10 +1752,11 @@ System.out.println("/n " + patient.getId() + " has a new doctor: "
 System.out.println(this.getId() + " has moved to consultant area "
 					+ this.getLoc().toString());
 		}
-	
+	if (!this.isScheduledToStop){
 		this.setInShift(true);
 		this.setAvailable(true);
 		System.out.println(this.getId() + " is in shift and is available at "+ getTime());
+	}
 	}
 	
 	// implements comparator
