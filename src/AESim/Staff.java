@@ -222,9 +222,9 @@ public abstract class Staff extends Agent {
 				.getInstance().getCurrentSchedule();
 		ScheduleParameters scheduleParams = ScheduleParameters
 				.createOneTime(maxPatientEndingTime);
-		EndBreak actionEnd = new EndBreak(this);
+		StartBreak actionStart = new StartBreak(this);
 
-		schedule.schedule(scheduleParams, actionEnd);
+		schedule.schedule(scheduleParams, actionStart);
 	}
 
 	protected static class StartBreak implements IAction {
@@ -268,7 +268,6 @@ public abstract class Staff extends Agent {
 			this.staff = staff;
 		}
 
-		@Override
 		public void execute() {
 			staff.endBreak();
 			

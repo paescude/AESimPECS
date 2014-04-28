@@ -604,13 +604,17 @@ System.out.println(" decision is " + decision);
 		}
 		else {
 			if (this.patientsInMultitask.size() < this.multiTaskingFactor){
+			
 				int decision= this.calcMaxWPECS();
 				//XXX PARAR POR FATIGA
+			
+					if (decision==1 && !this.isScheduledToStop){
+
+						this.rest();
+
+					}
+					
 				
-				if (decision==1){
-					this.rest();
-				
-				}
 				else {
 				
 //				if (!this.checkIfStartReassessment()){
@@ -632,7 +636,7 @@ System.out.println(" decision is " + decision);
 		if (maxEndingTime<getTime()){
 			maxEndingTime= getTime();
 		}
-		double timeEndingShift=  this.timeInitShift+ (double) this.durationOfShift[getWeek()][getHour()];
+		double timeEndingShift=  this.timeInitShift+ (double) this.durationOfShift[getWeek()][getHour()]*60;
 		
 		if (timeEndingShift> (maxEndingTime+durationOfRest)){
 			scheduleStartBreak(maxEndingTime);
