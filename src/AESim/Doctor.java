@@ -606,9 +606,11 @@ System.out.println(" decision is " + decision);
 			if (this.patientsInMultitask.size() < this.multiTaskingFactor){
 			
 				int decision= this.calcMaxWPECS();
+				this.moveToDoctorsArea();
+				//this.decideWhatToDo();
 				//XXX PARAR POR FATIGA
 			
-					if (decision==1 && !this.isScheduledToStop){
+				if (decision==1 && !this.isScheduledToStop){
 
 						this.rest();
 
@@ -620,10 +622,15 @@ System.out.println(" decision is " + decision);
 //				if (!this.checkIfStartReassessment()){
 //					if (!this.checkIfStartInitAssessment()) {
 //						this.moveToDoctorsArea();
+					
 						this.decideWhatToDo();
 //					}
 //				}
 			}
+					
+					
+					
+									
 			}
 		}
 	}
@@ -644,6 +651,7 @@ System.out.println(" decision is " + decision);
 		}
 		
 		else {
+			System.out.println(this.getId() + " esta cansado pero ya casi sale de turno?");
 			this.decideWhatToDo();
 		}
 		
@@ -940,6 +948,7 @@ System.out.println(patientToMove.getId()
 		printTime();
 //		doctor = chooseDocFirstAssess(patient, doctor);
 		doctor=this;
+		patient.setMyDoctorFstAssessment(patient.getMyDoctor());
 		if (doctor != null) {
 			int totalProcess = patient.getTotalProcesses();
 			patient.setTotalProcesses(totalProcess + 1);
@@ -987,10 +996,16 @@ System.err.println(" ERROR: something is wrong here, no doctor to end fst assess
 	public void checkConditionsForReassessment(Patient patient) {
 		if (this.isAvailable()) {
 			if (this.myPatientsBackInBed.contains(patient)) {
+				if(!patient.getCurrentQueue().getId().equals("qTrolley ")){
 				System.out.println(this.getId() + " contains " + patient.getId() + " then: ");
 				patient.setReassessmentDone(1);	
 				System.out.println(patient.getId()+ " is set reassessment done in true (or 1) AND " + this.getId() + " will start reassessment with this patient" );
 				this.startReassessment(patient);
+				}
+				
+				else {
+					System.out.println(" donde está?");
+				}
 				
 			} else {
 				this.decideWhatToDoNext();
@@ -1138,6 +1153,8 @@ System.err.println(" ERROR: something is wrong here, no doctor to end fst assess
 //			doctor = this;
 //		}
 		Doctor doctor = null;
+		patient.setMyDoctorReAssessment(patient.getMyDoctor());
+
 		if (this.myPatientsInBed.contains(patient)){
 			 doctor= this;
 		}
@@ -1560,6 +1577,7 @@ System.out
 		this.setW3WillOfKnowledge(0);
 		this.setW4SocialDesire(0);
 		
+		this.setScheduledToStop(false);
 		
 
 		

@@ -16,6 +16,9 @@ public class Patient extends Agent {
 	private int dayOutSystem;
 	private int hourOutSystem;	
 	private Doctor myDoctor;
+	private Doctor myDoctorFstAssessment;
+	private Doctor myDoctorReAssessment;
+
 	private Nurse myNurse;
 	private int weekInSystem;
 	private int dayInSystem;
@@ -819,6 +822,22 @@ System.err.println("WARNING: REACHED TARGET "+ this.getId() + " is at : " +this.
 
 	public void setFromOtherDoctor(boolean isFromOtherDoctor) {
 		this.isFromOtherDoctor = isFromOtherDoctor;
+	}
+
+	public Doctor getMyDoctorFstAssessment() {
+		return myDoctorFstAssessment;
+	}
+
+	public void setMyDoctorFstAssessment(Doctor myDoctorFstAssessment) {
+		this.myDoctorFstAssessment = myDoctorFstAssessment;
+	}
+
+	public Doctor getMyDoctorReAssessment() {
+		return myDoctorReAssessment;
+	}
+
+	public void setMyDoctorReAssessment(Doctor myDoctorReAssessment) {
+		this.myDoctorReAssessment = myDoctorReAssessment;
 	}
 
 }

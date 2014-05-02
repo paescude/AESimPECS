@@ -26,13 +26,13 @@ public class Exit extends SimObject {
 		Exit.currentRun = currentRun;
 		patientTimes = new double [1000][1000];
 		varI = 0;
-//		String fileName1 = "C:\\RepastSimphony-2.1\\AESim\\Outputs\\patientTimeInSystemRuns\\";	
-		String fileName1 = "C:\\Users\\pescuder\\Dropbox\\Outputs\\patientTimeInSystemRuns\\";	
+		String fileName1 = "C:\\RepastSimphony-2.1\\AESim\\Outputs\\patientTimeInSystemRuns\\";	
+//		String fileName1 = "C:\\Users\\pescuder\\Dropbox\\Outputs\\patientTimeInSystemRuns\\";	
 		
 		String fileName2 = "PatientTimeInSystemRun" + String.valueOf(currentRun)+ ".csv";
 		String filePath = fileName1 + fileName2;
 		writer = new FileWriter(filePath);
-		writer.append("\n Tick, RunNum,Week,Day,Hour,Min, MinTotalWeek,Id,TriageColor,TriageNum, TypeArrival,TimeInSys, isBackInBed, patientDoctor, CurrentQueuet, timeRegist, timeTriage, timeFstAss, timeReAss, timeTest, timeXRay, IsSystem\n");
+		writer.append("\n Tick, RunNum,Week,Day,Hour,Min, MinTotalWeek,Id,TriageColor,TriageNum, TypeArrival,TimeInSys, isBackInBed, patientDoctor, CurrentQueuet, timeRegist, timeTriage, timeFstAss, timeReAss, timeTest, timeXRay, myDoctorFsAssessment, myDoctorReAssessment,IsSystem\n");
 		Exit.dataNum = 0;
 		
 	}
@@ -100,6 +100,20 @@ public class Exit extends SimObject {
 			writer.append(",");
 			writer.append(String.valueOf(patient
 					.gettXray()));
+			writer.append(",");
+			if (patient.getMyDoctorFstAssessment()!= null){
+			writer.append(String.valueOf(patient
+					.getMyDoctorFstAssessment().getId()));}
+			else{
+				writer.append("null");
+			}
+			writer.append(",");
+			if (patient.getMyDoctorReAssessment()!= null){
+			writer.append(String.valueOf(patient
+					.getMyDoctorReAssessment().getId()));}
+			else{
+				writer.append("null");
+			}
 			writer.append(",");
 			writer.append(String.valueOf(patient
 					.isInSystem()));
