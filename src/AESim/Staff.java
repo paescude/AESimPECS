@@ -18,6 +18,9 @@ public abstract class Staff extends Agent {
 	protected int numAvailable;
 	protected boolean inShift;
 	protected double timeInitShift;
+	// timeInitShiftAB = timeInitShift after break 
+	protected double timeInitShiftAB;
+	protected double factorOfInitShift = 2.5;
 	protected float[][] myShiftMatrix;
 	protected float[][] durationOfShift = new float[7][24];
 	protected int requiredAtWork;
@@ -25,6 +28,7 @@ public abstract class Staff extends Agent {
 	protected int multiTaskingFactor;
 	protected ArrayList<Patient> patientsInMultitask;
 	protected boolean isScheduledToStop= false;
+	protected boolean isInBreak = false;
 	protected double durationOfRest=20;
 	protected static final ArrayList<Patient> patientsRedTriage = new ArrayList<>();
 	
@@ -38,7 +42,11 @@ public abstract class Staff extends Agent {
 	}
 //TODO SUMAR SOLO LOS UNOS DEL SHIFT 
 	public double calculateWorkedTimeHours() {
-		double timeInHours = (getTime()- this.getTimeInitShift())/60;
+		//XXX FECHA 5 MAYO 2014 ARREGLAR ESTO PARA QUE DE EN HORAS, COMPARAR CON ANTERIOR 
+		double timeInMins = getTime()- this.getTimeInitShiftAB();
+		double timeInHours= timeInMins/60;
+		
+				
 //		for (int i = 0; i < getHour(); i++) {
 //			timeInHours = timeInHours
 //					+ (int) this.getMyShiftMatrix()[i][getDay()];
@@ -254,8 +262,9 @@ public abstract class Staff extends Agent {
 		// + " is supposed to move out at: " + timeEnding);
 		ISchedule schedule = repast.simphony.engine.environment.RunEnvironment
 				.getInstance().getCurrentSchedule();
+		double timeEndBreak= schedule.getTickCount() + breakDuration;
 		ScheduleParameters scheduleParams = ScheduleParameters
-				.createOneTime(breakDuration);
+				.createOneTime(timeEndBreak);
 		EndBreak actionEnd = new EndBreak(this);
 
 		schedule.schedule(scheduleParams, actionEnd);
@@ -557,6 +566,24 @@ public abstract class Staff extends Agent {
 	}
 	public void setScheduledToStop(boolean isScheduledToStop) {
 		this.isScheduledToStop = isScheduledToStop;
+	}
+	public boolean isInBreak() {
+		return isInBreak;
+	}
+	public void setInBreak(boolean isInBreak) {
+		this.isInBreak = isInBreak;
+	}
+	public double getTimeInitShiftAB() {
+		return timeInitShiftAB;
+	}
+	public void setTimeInitShiftAB(double timeInitShiftAB) {
+		this.timeInitShiftAB = timeInitShiftAB;
+	}
+	public double getFactorOfInitShift() {
+		return factorOfInitShift;
+	}
+	public void setFactorOfInitShift(double factorOfInitShift) {
+		this.factorOfInitShift = factorOfInitShift;
 	}
 
 }

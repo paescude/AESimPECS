@@ -42,7 +42,13 @@ public abstract class Doctor extends Staff {
 	protected double x5RatioTestMaxTestMyPatients;
 	protected double x6MyTotalTimeWorkedInDpmnt; // TotalTimeWorkedInDpmnt is
 												// measured in weeks
+	
 	protected double x7MyPatientsMaxTimeInSys;
+	
+	protected int howToChoosePats;
+	
+
+	
 
 	// PARAMETERS
 	protected double c1MyMaxPatientHour;
@@ -120,6 +126,7 @@ public abstract class Doctor extends Staff {
 	
 	public void startShift(){
 		this.setTimeInitShift(getTime());
+		this.setTimeInitShiftAB(getTime());
 		this.initializeDoctorShiftParams();
 		this.doctorToHandOver= null;
 		System.out.println(this.getId() + " will move to doctors area"
@@ -290,14 +297,14 @@ if (this.isInShift()){
 //}
 	}
 	
-public String marginalZ2 (){
+public int marginalZ2 (){
 		
 		double alpha1 = 0;
 		
 		double beta1 = 0.7;
 		double beta2 = 0.3;
 		
-		String winner = "";
+		int winner = 0;
 		
 		if(this.getAllMyPatients().size()>0){
 			alpha1 = this.getX3TriageMaxAmongMyPatients()
@@ -330,9 +337,11 @@ public String marginalZ2 (){
 			double z22TimeIntensity = MathFunctions.calcFLogisticPositive(z22Time, this.getAlphaZ2W2(), this.getcZ2W2());
 			
 			if(z22TriageIntensity<z22TimeIntensity){
-				winner = "Patients not seen by the doc, Time";
+				//winner = "Patients not seen by the doc, Time";
+				winner = 1;
 			} else {
-				winner = "Patients not seen by the doc, Triage";
+				//winner = "Patients not seen by the doc, Triage";
+				winner = 2;
 			}
 			
 		} else {
@@ -344,9 +353,11 @@ public String marginalZ2 (){
 			double z21TimeIntensity = MathFunctions.calcFLogisticPositive(z21Time, this.getAlphaZ2W2(), this.getcZ2W2());
 			
 			if(z21TriageIntensity<z21TimeIntensity){
-				winner = "Patients seen by the doc, Time";
+				//winner = "Patients seen by the doc, Time";
+				winner = 3;
 			} else {
-				winner = "Patients seen by the doc, Triage";
+				//winner = "Patients seen by the doc, Triage";
+				winner = 4;
 			}
 			
 		}
@@ -432,6 +443,7 @@ public String marginalZ2 (){
 		printTime();
 		System.out.println(this.getId() + " is starting a break. Num available= " + this.getNumAvailable());
 		this.scheduleEndBreak(this.durationOfRest);
+		this.setInBreak(true);
 		this.moveToDoctorsArea();
 		
 		
@@ -444,7 +456,13 @@ public String marginalZ2 (){
 		this.setScheduledToStop(false);
 		this.setNumAvailable(this.getMultiTaskingFactor());
 		this.setAvailable(true);
-		this.setX2MyTimeWorkedInShift(this.x2MyTimeWorkedInShift/2);
+		//this.setX2MyTimeWorkedInShift(this.x2MyTimeWorkedInShift/2);
+		this.setInBreak(false);
+		if(this.calculateWorkedTimeHours()*60>20*this.getFactorOfInitShift()){
+			this.setTimeInitShiftAB(this.getTimeInitShift()+20*this.getFactorOfInitShift());
+		} else {
+			
+		}
 		this.decideWhatToDoNext();
 	}
 
@@ -611,13 +629,11 @@ System.out.println(" decision is " + decision);
 				//XXX PARAR POR FATIGA
 			
 				if (decision==1 && !this.isScheduledToStop){
-
 						this.rest();
-
-					}
-					
-				
-				else {
+				}
+				else if (decision == 2) {
+					this.setHowToChoosePats(marginalZ2());
+				} else{
 				
 //				if (!this.checkIfStartReassessment()){
 //					if (!this.checkIfStartInitAssessment()) {
@@ -2276,6 +2292,14 @@ System.out.println(this.getId() + " has moved to consultant area "
 
 	public void setSizeAllMyPatients(int sizeAllMyPatients) {
 		this.sizeAllMyPatients = sizeAllMyPatients;
+	}
+	
+	public int getHowToChoosePats() {
+		return howToChoosePats;
+	}
+
+	public void setHowToChoosePats(int howToChoosePats) {
+		this.howToChoosePats = howToChoosePats;
 	}
 		
 }
