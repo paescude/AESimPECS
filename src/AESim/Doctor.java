@@ -221,7 +221,7 @@ if (this.isInShift()){
 		double avPatsNotSeenByThisDoc = (this.calculateAverageTimeAllPatients()[0]/60)*this.calculateAverageTimeAllPatients()[1]-this.getX4MyPatientsAverageTimeInSys()*this.getAllMyPatients().size();
 		
 		
-		double x = beta1*this.getX4MyPatientsAverageTimeInSys()+beta2*avPatsNotSeenByThisDoc;
+		double x = 2*(beta1*this.getX4MyPatientsAverageTimeInSys()+beta2*avPatsNotSeenByThisDoc);
 		double c = beta1*this.getC3LogisticCalmC()+beta2*this.getCpLogisticCalmC();
 		
 		this.setZ2Calmness(MathFunctions.calcFLogisticPositive(x, alpha1,c));
@@ -633,6 +633,17 @@ System.out.println(" decision is " + decision);
 				}
 				else if (decision == 2) {
 					this.setHowToChoosePats(marginalZ2());
+					switch (this.getHowToChoosePats()){
+						case 1:
+							this.decideWhatToDoStress();
+						case 2:
+							this.decideWhatToDo();
+						case 3:
+							this.decideWhatToDo();
+						case 4:
+							this.decideWhatToDo();
+					}
+					
 				} else{
 				
 //				if (!this.checkIfStartReassessment()){
@@ -652,8 +663,67 @@ System.out.println(" decision is " + decision);
 	}
 	
 	
+	public void decideWhatToDoStress(){
+		
+		
+		
+	}
 	
 	
+	
+	
+	protected boolean checKInitAssessmentStress() {
+
+		boolean checked = false;
+		Patient patient = null;
+		Boolean flag = false;
+		// The head of the queue is at (x,y-1)
+		// Object o = grid.getObjectAt(locX, locY);
+		int i = 1;
+		int locX = 0;
+		double maxTime= 0;
+		Patient patientCheck = null;
+		while (i <= 5) {
+			// checking from left to right, which patient is at the head of
+			// assessment (by each triage color) queue
+			for (Object o : grid.getObjectsAt(i, 8)) {
+				if (o instanceof Patient) {
+					patientCheck = (Patient) o;
+					if(patientCheck.getTimeInSystem()>maxTime){
+						maxTime = patientCheck.getTimeInSystem();
+						locX = i;
+						patient = patientCheck;
+					}				
+				}
+			}
+			i++;
+			// checks if there is anyone to start the first assessment
+		}
+
+		if (patient != null) {
+			System.out.println(this.getId()
+					+ " decide to start first assessment with:"
+					+ patient.getId());			
+			this.checkConditionsForFirstAssessment(patient);
+			checked = true;
+
+		} else {
+//			System.out.println(this.getId() + "");
+//			if (this.allMyPatients != null){
+//				printElementsArray(allMyPatients, " All my patients, in check if start init assessment patients:");
+//			}			
+			if (!this.isAtDoctorArea){
+				System.out.println(this.getId() + " is available and...decides what to do, moving to docs area when start Init assessment");
+				this.moveToDoctorsArea();}
+		}
+		return checked;
+	
+		
+		
+		
+		
+	}
+
 	public void rest() {
 		double maxEndingTime= this.calculateMaxEndingTime(); 
 		if (maxEndingTime<getTime()){
@@ -917,12 +987,19 @@ System.out.println(patientToMove.getId()
 		}
 
 		// System.out.println("triangularOBS :   " + serviceTime);
+//		if(this.getHowToChoosePats()==0 && this.calculateAverageTimeAllPatients()[0]>120){
+		if(this.getHowToChoosePats()==0 && this.calculateAverageTimeAllPatients()[2]>120){
+			serviceTime*=0.3;
+		}
+		
 		ISchedule schedule = repast.simphony.engine.environment.RunEnvironment
 				.getInstance().getCurrentSchedule();
 
 		// double timeEndService = schedule.getTickCount()
 		// + serviceTime;
 		patient.settFirstAssessment(serviceTime);
+		
+	
 		double timeEndService = schedule.getTickCount() + serviceTime;
 		this.setNextEndingTime(timeEndService);
 		ScheduleParameters scheduleParams = ScheduleParameters

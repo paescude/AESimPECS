@@ -74,6 +74,7 @@ public class Sho extends Doctor {
 	
 	@Override
 	public void decideWhatToDo() {
+		
 		// TODO Auto-generated method stub
 		System.out.println(" checks if there is any sho available to start init assessment ");
 		if (!this.checkIfStartReassessment()){
@@ -85,6 +86,20 @@ public class Sho extends Doctor {
 			}
 		}
 	}	
+	
+	
+	@Override
+	public void decideWhatToDoStress(){
+		this.checKInitAssessmentStress();
+		this.setHowToChoosePats(0);
+			
+	}
+	
+	
+	
+	
+	
+	
 	
 	@Override
 	public double[] reassessmentParameters(int Triage) {

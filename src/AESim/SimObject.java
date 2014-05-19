@@ -173,10 +173,11 @@ public class SimObject {
 	@ScheduledMethod(start = 10, interval = 10, pick = 1)
 	public double [] calculateAverageTimeAllPatients() {
 		
-		double info [] = new double [2];
+		double info [] = new double [3];
 		
 		double sumTimeInSys = 0;
 		double totalPatients = 0;
+		double maxTimeInSys = 0;
 		context =getContext();
 		//context = ContextUtils.getContext(this);
 		Patient patient = null;
@@ -185,6 +186,9 @@ public class SimObject {
 				patient = (Patient) o;
 				if (patient.isInSystem()) {
 					sumTimeInSys += patient.getTimeInSystem();
+					if(patient.getTimeInSystem()>maxTimeInSys){
+						maxTimeInSys = patient.getTimeInSystem();
+					}
 					totalPatients++;
 
 				}
@@ -195,6 +199,7 @@ public class SimObject {
 			averageTimeAllPatients = sumTimeInSys / totalPatients;
 			info[0] = averageTimeAllPatients;
 			info[1] = totalPatients;
+			info[2] = maxTimeInSys;
 		}
 		
 		
