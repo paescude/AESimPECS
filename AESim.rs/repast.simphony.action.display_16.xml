@@ -11,7 +11,7 @@
       <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
     <entry>
-      <string>AESim.Consultant</string>
+      <string>AESim.Sho</string>
       <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
     <entry>
@@ -19,7 +19,7 @@
       <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
     <entry>
-      <string>AESim.Sho</string>
+      <string>AESim.Consultant</string>
       <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
     <entry>
@@ -41,16 +41,16 @@
       <string>AESim.Patient.style_2.xml</string>
     </entry>
     <entry>
-      <string>AESim.Consultant</string>
-      <string>AESim.Consultant.style_0.xml</string>
+      <string>AESim.Sho</string>
+      <string>AESim.Sho.style_0.xml</string>
     </entry>
     <entry>
       <string>AESim.Resource</string>
       <string>AESim.Resource.style_4.xml</string>
     </entry>
     <entry>
-      <string>AESim.Sho</string>
-      <string>AESim.Sho.style_0.xml</string>
+      <string>AESim.Consultant</string>
+      <string>AESim.Consultant.style_0.xml</string>
     </entry>
     <entry>
       <string>AESim.QueueSim</string>
@@ -86,16 +86,16 @@
       <int>5</int>
     </entry>
     <entry>
-      <string>AESim.Resource</string>
-      <int>1</int>
+      <string>AESim.Sho</string>
+      <int>4</int>
     </entry>
     <entry>
       <string>AESim.Consultant</string>
       <int>3</int>
     </entry>
     <entry>
-      <string>AESim.Sho</string>
-      <int>4</int>
+      <string>AESim.Resource</string>
+      <int>1</int>
     </entry>
     <entry>
       <string>AESim.QueueSim</string>

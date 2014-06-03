@@ -70,6 +70,9 @@ public class Patient extends Agent {
 	private double tReasssesment;
 	private double tXray;
 	private double tTest;
+	private double probTest;
+	private double probXRay;
+	private boolean changedProbTests;
 
 	
 	public Patient(Grid<Object> grid, String typeArrival, double time) {
@@ -121,6 +124,9 @@ public class Patient extends Agent {
 		this.tReasssesment=0;
 		this.tXray=0;
 		this.tTest=0;
+		this.probTest=0;
+		this.probXRay=0;
+		this.changedProbTests= false;
 	}
 	
 	public void addToQ(String name) {
@@ -249,6 +255,7 @@ System.out.println(this.getId() + " has moved to the head of: " + queue.getId() 
 	public void decideWhereToGo() {		
 		if (this.waitInCublicle == false) {
 			Doctor myDoctor = this.getMyDoctor();
+	
 			Resource bed = myDoctor.findBed(this.getTriageNum());
 			if (bed != null) {
 				this.isWaitingBedReassessment = 0;
@@ -816,6 +823,22 @@ System.err.println("WARNING: REACHED TARGET "+ this.getId() + " is at : " +this.
 		this.tTest = serviceTime;
 	}
 
+	public double getProbTest() {
+		return probTest;
+	}
+
+	public void setProbTest(double probTest) {
+		this.probTest = probTest;
+	}
+
+	public double getProbXRay() {
+		return probXRay;
+	}
+
+	public void setProbXRay(double probXRay) {
+		this.probXRay = probXRay;
+	}
+
 	public boolean isFromOtherDoctor() {
 		return isFromOtherDoctor;
 	}
@@ -839,5 +862,16 @@ System.err.println("WARNING: REACHED TARGET "+ this.getId() + " is at : " +this.
 	public void setMyDoctorReAssessment(Doctor myDoctorReAssessment) {
 		this.myDoctorReAssessment = myDoctorReAssessment;
 	}
+
+	public boolean isChangedProbTests() {
+		return changedProbTests;
+	}
+
+	public void setChangedProbTests(boolean changedProbTests) {
+		this.changedProbTests = changedProbTests;
+	}
+
+
+	
 
 }

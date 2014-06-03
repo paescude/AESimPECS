@@ -43,6 +43,7 @@ public class QueueSim extends SimObject{
 	public Boolean addPatientToQueue(Patient patient) {
 		boolean b = queue.add(patient);
 		patientInQueue = patient;
+		
 
 		totalInQueue = this.queue.size();
 

@@ -1,16 +1,15 @@
 <repast.simphony.data2.engine.FileSinkDescriptor>
-  <name>numArrivalsAll</name>
-  <dataSet>InterArrivalsAmbulanceWalkin</dataSet>
+  <name>ConsultantPECS</name>
+  <dataSet>pecsConsultant</dataSet>
   <delimiter>,</delimiter>
   <format>TABULAR</format>
   <sourceIds class="linked-hash-set">
     <string>tick</string>
-    <string>week</string>
-    <string>day</string>
-    <string>hour</string>
-    <string>IAT_Walk_in</string>
-    <string>IAT_Ambulance</string>
+    <string>W1Fatigue</string>
+    <string>W2Stress</string>
+    <string>W3WillOfKnowledge1</string>
+    <string>W4SocialDesire</string>
   </sourceIds>
-  <fileName>C:\RepastSimphony-2.1\AESim\Outputs\numeroLlegadas.txt</fileName>
+  <fileName>C:\RepastSimphony-2.1\AESim\Outputs\PECSConsultant\pecsConsultant.csv</fileName>
   <addTimeStamp>true</addTimeStamp>
 </repast.simphony.data2.engine.FileSinkDescriptor>

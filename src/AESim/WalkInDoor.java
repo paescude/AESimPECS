@@ -39,6 +39,8 @@ public class WalkInDoor extends SimObject {
 
 		ISchedule schedule = repast.simphony.engine.environment.RunEnvironment
 				.getInstance().getCurrentSchedule();
+		//XXX MAYO 20 ESTOY PONIENDO ESCENARIOS EXTREMOS
+		IATWalkIn*=1;
 
 		double timeNextArrival = schedule.getTickCount() + IATWalkIn;
 

@@ -1,35 +1,27 @@
 <repast.simphony.data2.engine.DataSetDescriptor>
-  <name>DurationOfShift</name>
+  <name>DataInvidualTInSys</name>
   <type>NON_AGGREGATE</type>
-  <sourceType>AESim.Staff</sourceType>
+  <sourceType>AESim.Patient</sourceType>
   <inclTick>true</inclTick>
   <inclBatchRun>false</inclBatchRun>
   <inclRandomSeed>false</inclRandomSeed>
   <scheduleParams>
     <start>1.0</start>
-    <interval>1.0</interval>
+    <interval>10.0</interval>
     <priority>-Infinity</priority>
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>1265025627</hashCode>
+    <hashCode>-791516276</hashCode>
   </scheduleParams>
   <atEnd>false</atEnd>
   <methodDataSources class="linked-hash-map">
     <entry>
-      <string>Id</string>
+      <string>TimeInSystem</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>Id</id>
-        <className>AESim.Staff</className>
-        <methodName>getId</methodName>
-      </repast.simphony.data2.engine.MethodDataSourceDefinition>
-    </entry>
-    <entry>
-      <string>DurationOfShiftText</string>
-      <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>DurationOfShiftText</id>
-        <className>AESim.Staff</className>
-        <methodName>getDurationOfShiftText</methodName>
+        <id>TimeInSystem</id>
+        <className>AESim.Patient</className>
+        <methodName>getTimeInSystem</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
   </methodDataSources>

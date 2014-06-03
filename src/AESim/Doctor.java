@@ -32,6 +32,7 @@ public abstract class Doctor extends Staff {
 	protected Patient myPatientCalling;
 	protected Doctor doctorToHandOver;
 	protected int sizeAllMyPatients;
+
 	
 	// PECS information and variables
 	// INPUT variables
@@ -988,8 +989,24 @@ System.out.println(patientToMove.getId()
 
 		// System.out.println("triangularOBS :   " + serviceTime);
 //		if(this.getHowToChoosePats()==0 && this.calculateAverageTimeAllPatients()[0]>120){
-		if(this.getHowToChoosePats()==0 && this.calculateAverageTimeAllPatients()[2]>120){
-			serviceTime*=0.3;
+//		if(this.getHowToChoosePats()==0 && /*this.calculateAverageTimeAllPatients()[2]>120 &&*/ patient.getTimeInSystem()>200 && patient.getTimeInSystem()<240){
+		if(this.getHowToChoosePats()>0 && /*this.calculateAverageTimeAllPatients()[2]>120 &&*/ patient.getTimeInSystem()>180){
+			double percChangeTService=1;
+
+			if (patient.getTimeInSystem()<240){
+				percChangeTService= -patient.getTimeInSystem()+250;
+			}
+			else {
+				percChangeTService= 0.1;
+			}
+		
+			serviceTime*=percChangeTService;
+			double probTest= patient.getProbTest()*0.5;
+			patient.setProbTest(probTest);
+			double probXRay= patient.getProbXRay()*0.5;
+			patient.setProbXRay(probXRay);
+			patient.setChangedProbTests(true);
+			//ojo aqui hay un problema porque cuando se lee esto el paciente no sabe que hacer entonces esta multiplicacion debe ser allá en doc y no aquí
 		}
 		
 		ISchedule schedule = repast.simphony.engine.environment.RunEnvironment
@@ -1046,7 +1063,8 @@ System.out.println(patientToMove.getId()
 			int totalProcess = patient.getTotalProcesses();
 			patient.setTotalProcesses(totalProcess + 1);
 			// doctor decides what to do
-			int route[] = decideTests(patient.getTriageNum());
+// XXX MAYO 19 248P
+			int route[] = decideTests(patient.getTriageNum(), patient);
 			/*
 			 * Choose a route. A patient could go to test or not. 30% of
 			 * patients are removed from department.
@@ -1515,16 +1533,27 @@ System.out.println(patient.getId() + " is in system = " + patient.isInSystem());
 		}
 	}
 
-	private int[] decideTests(int triageNum) {
+	private int[] decideTests(int triageNum, Patient patient) {
 		Uniform unif = RandomHelper.createUniform();
 		double rndXRay = unif.nextDouble();
 		double rndTest = unif.nextDouble();
 		int testRoute[] = { 0, 0 };
-		if (rndXRay <= Reader.getMatrixPropTest()[triageNum - 1][0]) {
+		// esto lo comenté porque lo pasé para la Nurse en el triage, y así poder cambiar la probabilidad de tests desde que se calcula PECS
+		//		double probXRay=Reader.getMatrixPropTest()[triageNum - 1][0];
+		//		double probTest=Reader.getMatrixPropTest()[triageNum - 1][1];
+		//		patient.setProbTest(probTest);
+		//		patient.setProbXRay(probXRay);
+		
+				double probXRay=patient.getProbXRay();
+				double probTest=patient.getProbTest();
+
+		
+		if (rndXRay <= probXRay) {
 			testRoute[0] = 1;
+			
 
 		}
-		if (rndTest <= Reader.getMatrixPropTest()[triageNum - 1][1]) {
+		if (rndTest <= probTest) {
 			testRoute[1] = 1;
 
 		}
@@ -2378,5 +2407,7 @@ System.out.println(this.getId() + " has moved to consultant area "
 	public void setHowToChoosePats(int howToChoosePats) {
 		this.howToChoosePats = howToChoosePats;
 	}
+
+
 		
 }

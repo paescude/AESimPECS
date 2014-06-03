@@ -1,12 +1,26 @@
 <repast.simphony.data2.engine.FileSinkDescriptor>
-  <name>DatatimeInSysEach</name>
-  <dataSet>DataInvidualTInSys</dataSet>
+  <name>FileSinkPECSEach</name>
+  <dataSet>DataSetPECSEach</dataSet>
   <delimiter>,</delimiter>
   <format>TABULAR</format>
   <sourceIds class="linked-hash-set">
+    <string>Week</string>
+    <string>Day</string>
+    <string>Hour</string>
+    <string>Id</string>
+    <string>InShift</string>
     <string>tick</string>
-    <string>TimeInSystem</string>
+    <string>W1Fatigue</string>
+    <string>W2Stress</string>
+    <string>W3WillOfKnowledge</string>
+    <string>W4SocialDesire</string>
+    <string>W3WillOfKnowledge1</string>
+    <string>W3WillOfKnowledge2</string>
+    <string>W3WillOfKnowledge3</string>
+    <string>W3WillOfKnowledge4</string>
+    <string>W3WillOfKnowledge5</string>
+    <string>W3WillOfKnowledge6</string>
   </sourceIds>
-  <fileName>C:\RepastSimphony-2.1\AESim\Outputs\dataTimeInSysEach.txt</fileName>
+  <fileName>C:\RepastSimphony-2.1\AESim\Outputs\PECSAll\PECSallDoctors.csv</fileName>
   <addTimeStamp>true</addTimeStamp>
 </repast.simphony.data2.engine.FileSinkDescriptor>

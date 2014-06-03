@@ -304,6 +304,21 @@ public class Nurse extends Staff {
 //			System.out.println(patient.getId() + " triage num = "
 //					+ patient.getTriageNum() + " has moved to "
 //					+ patient.getCurrentQueue().getId());
+			
+		}
+		try {
+			this.assignProbTest(patient,patient.getTriageNum());
+		} catch (Exception e) {
+System.err.println(" algo pasa aqui");		}
+		
+	}
+
+	private void assignProbTest(Patient patient, int triageNum) {
+		if (patient.getTriageNum()>0){
+		double probXRay=Reader.getMatrixPropTest()[triageNum - 1][0];
+		double probTest=Reader.getMatrixPropTest()[triageNum - 1][1];
+		patient.setProbTest(probTest);
+		patient.setProbXRay(probXRay);
 		}
 	}
 

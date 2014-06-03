@@ -1,83 +1,51 @@
 <repast.simphony.data2.engine.DataSetDescriptor>
-  <name>serviceTimes</name>
+  <name>pecsConsultant</name>
   <type>NON_AGGREGATE</type>
-  <sourceType>AESim.Patient</sourceType>
+  <sourceType>AESim.Consultant</sourceType>
   <inclTick>true</inclTick>
   <inclBatchRun>false</inclBatchRun>
   <inclRandomSeed>false</inclRandomSeed>
   <scheduleParams>
     <start>1.0</start>
-    <interval>30.0</interval>
+    <interval>10.0</interval>
     <priority>-Infinity</priority>
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>-1574789956</hashCode>
+    <hashCode>-225083673</hashCode>
   </scheduleParams>
   <atEnd>false</atEnd>
   <methodDataSources class="linked-hash-map">
     <entry>
-      <string>tFirstAssessment</string>
+      <string>W1Fatigue</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>tFirstAssessment</id>
-        <className>AESim.Patient</className>
-        <methodName>gettFirstAssessment</methodName>
+        <id>W1Fatigue</id>
+        <className>AESim.Consultant</className>
+        <methodName>getW1Fatigue</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
     <entry>
-      <string>tReasssesment</string>
+      <string>W2Stress</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>tReasssesment</id>
-        <className>AESim.Patient</className>
-        <methodName>gettReasssesment</methodName>
+        <id>W2Stress</id>
+        <className>AESim.Consultant</className>
+        <methodName>getW2Stress</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
     <entry>
-      <string>tRegist</string>
+      <string>W3WillOfKnowledge1</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>tRegist</id>
-        <className>AESim.Patient</className>
-        <methodName>gettRegist</methodName>
+        <id>W3WillOfKnowledge1</id>
+        <className>AESim.Consultant</className>
+        <methodName>getW3WillOfKnowledge1</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
     <entry>
-      <string>tTest</string>
+      <string>W4SocialDesire</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>tTest</id>
-        <className>AESim.Patient</className>
-        <methodName>gettTest</methodName>
-      </repast.simphony.data2.engine.MethodDataSourceDefinition>
-    </entry>
-    <entry>
-      <string>tTriage</string>
-      <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>tTriage</id>
-        <className>AESim.Patient</className>
-        <methodName>gettTriage</methodName>
-      </repast.simphony.data2.engine.MethodDataSourceDefinition>
-    </entry>
-    <entry>
-      <string>tXray</string>
-      <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>tXray</id>
-        <className>AESim.Patient</className>
-        <methodName>gettXray</methodName>
-      </repast.simphony.data2.engine.MethodDataSourceDefinition>
-    </entry>
-    <entry>
-      <string>Id</string>
-      <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>Id</id>
-        <className>AESim.Patient</className>
-        <methodName>getId</methodName>
-      </repast.simphony.data2.engine.MethodDataSourceDefinition>
-    </entry>
-    <entry>
-      <string>Triage</string>
-      <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>Triage</id>
-        <className>AESim.Patient</className>
-        <methodName>getTriage</methodName>
+        <id>W4SocialDesire</id>
+        <className>AESim.Consultant</className>
+        <methodName>getW4SocialDesire</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
   </methodDataSources>

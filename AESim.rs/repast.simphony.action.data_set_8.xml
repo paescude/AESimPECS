@@ -1,27 +1,27 @@
 <repast.simphony.data2.engine.DataSetDescriptor>
-  <name>DataInvidualTInSys</name>
-  <type>NON_AGGREGATE</type>
-  <sourceType>AESim.Patient</sourceType>
+  <name>Agg_Fatigue</name>
+  <type>AGGREGATE</type>
   <inclTick>true</inclTick>
   <inclBatchRun>false</inclBatchRun>
   <inclRandomSeed>false</inclRandomSeed>
   <scheduleParams>
     <start>1.0</start>
-    <interval>10.0</interval>
+    <interval>1.0</interval>
     <priority>-Infinity</priority>
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>-791516276</hashCode>
+    <hashCode>861689385</hashCode>
   </scheduleParams>
   <atEnd>false</atEnd>
   <methodDataSources class="linked-hash-map">
     <entry>
-      <string>TimeInSystem</string>
+      <string>Fatigue</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>TimeInSystem</id>
-        <className>AESim.Patient</className>
-        <methodName>getTimeInSystem</methodName>
+        <id>Fatigue</id>
+        <className>AESim.Doctor</className>
+        <methodName>getW1Fatigue</methodName>
+        <aggType>MEAN</aggType>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
   </methodDataSources>

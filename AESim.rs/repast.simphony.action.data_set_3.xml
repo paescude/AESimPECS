@@ -1,7 +1,6 @@
 <repast.simphony.data2.engine.DataSetDescriptor>
-  <name>ConsultantVariables</name>
-  <type>NON_AGGREGATE</type>
-  <sourceType>AESim.Consultant</sourceType>
+  <name>InterArrivalsAmbulanceWalkin</name>
+  <type>AGGREGATE</type>
   <inclTick>true</inclTick>
   <inclBatchRun>false</inclBatchRun>
   <inclRandomSeed>false</inclRandomSeed>
@@ -12,48 +11,53 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>1259520439</hashCode>
+    <hashCode>981599362</hashCode>
   </scheduleParams>
   <atEnd>false</atEnd>
   <methodDataSources class="linked-hash-map">
     <entry>
-      <string>Id</string>
+      <string>IAT_Walk_in</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>Id</id>
-        <className>AESim.Consultant</className>
-        <methodName>getId</methodName>
+        <id>IAT_Walk_in</id>
+        <className>AESim.WalkInDoor</className>
+        <methodName>getNumberWalkedIn</methodName>
+        <aggType>SUM</aggType>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
     <entry>
-      <string>W1Fatigue</string>
+      <string>IAT_Ambulance</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>W1Fatigue</id>
-        <className>AESim.Consultant</className>
-        <methodName>getW1Fatigue</methodName>
+        <id>IAT_Ambulance</id>
+        <className>AESim.AmbulanceIn</className>
+        <methodName>getNumberAmbulanceIn</methodName>
+        <aggType>SUM</aggType>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
     <entry>
-      <string>W2Stress</string>
+      <string>week</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>W2Stress</id>
-        <className>AESim.Consultant</className>
-        <methodName>getW2Stress</methodName>
+        <id>week</id>
+        <className>AESim.Administrator</className>
+        <methodName>getWeek</methodName>
+        <aggType>SUM</aggType>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
     <entry>
-      <string>W3WillOfKnowledge1</string>
+      <string>day</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>W3WillOfKnowledge1</id>
-        <className>AESim.Consultant</className>
-        <methodName>getW3WillOfKnowledge1</methodName>
+        <id>day</id>
+        <className>AESim.Administrator</className>
+        <methodName>getDay</methodName>
+        <aggType>SUM</aggType>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
     <entry>
-      <string>W4SocialDesire</string>
+      <string>hour</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>W4SocialDesire</id>
-        <className>AESim.Consultant</className>
-        <methodName>getW4SocialDesire</methodName>
+        <id>hour</id>
+        <className>AESim.Administrator</className>
+        <methodName>getHour</methodName>
+        <aggType>SUM</aggType>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
   </methodDataSources>

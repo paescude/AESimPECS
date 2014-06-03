@@ -1,7 +1,7 @@
 <repast.simphony.data2.engine.DataSetDescriptor>
-  <name>DataSetPECSEach</name>
+  <name>ConsultantVariables</name>
   <type>NON_AGGREGATE</type>
-  <sourceType>AESim.Sho</sourceType>
+  <sourceType>AESim.Consultant</sourceType>
   <inclTick>true</inclTick>
   <inclBatchRun>false</inclBatchRun>
   <inclRandomSeed>false</inclRandomSeed>
@@ -12,15 +12,23 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>1328076864</hashCode>
+    <hashCode>1259520439</hashCode>
   </scheduleParams>
   <atEnd>false</atEnd>
   <methodDataSources class="linked-hash-map">
     <entry>
+      <string>Id</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>Id</id>
+        <className>AESim.Consultant</className>
+        <methodName>getId</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
       <string>W1Fatigue</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
         <id>W1Fatigue</id>
-        <className>AESim.Sho</className>
+        <className>AESim.Consultant</className>
         <methodName>getW1Fatigue</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
@@ -28,112 +36,24 @@
       <string>W2Stress</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
         <id>W2Stress</id>
-        <className>AESim.Sho</className>
+        <className>AESim.Consultant</className>
         <methodName>getW2Stress</methodName>
-      </repast.simphony.data2.engine.MethodDataSourceDefinition>
-    </entry>
-    <entry>
-      <string>W3WillOfKnowledge</string>
-      <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>W3WillOfKnowledge</id>
-        <className>AESim.Sho</className>
-        <methodName>getW3WillOfKnowledge</methodName>
-      </repast.simphony.data2.engine.MethodDataSourceDefinition>
-    </entry>
-    <entry>
-      <string>W4SocialDesire</string>
-      <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>W4SocialDesire</id>
-        <className>AESim.Sho</className>
-        <methodName>getW4SocialDesire</methodName>
-      </repast.simphony.data2.engine.MethodDataSourceDefinition>
-    </entry>
-    <entry>
-      <string>Id</string>
-      <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>Id</id>
-        <className>AESim.Sho</className>
-        <methodName>getId</methodName>
-      </repast.simphony.data2.engine.MethodDataSourceDefinition>
-    </entry>
-    <entry>
-      <string>InShift</string>
-      <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>InShift</id>
-        <className>AESim.Sho</className>
-        <methodName>isInShift</methodName>
-      </repast.simphony.data2.engine.MethodDataSourceDefinition>
-    </entry>
-    <entry>
-      <string>Day</string>
-      <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>Day</id>
-        <className>AESim.Sho</className>
-        <methodName>getDay</methodName>
-      </repast.simphony.data2.engine.MethodDataSourceDefinition>
-    </entry>
-    <entry>
-      <string>Week</string>
-      <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>Week</id>
-        <className>AESim.Sho</className>
-        <methodName>getWeek</methodName>
-      </repast.simphony.data2.engine.MethodDataSourceDefinition>
-    </entry>
-    <entry>
-      <string>Hour</string>
-      <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>Hour</id>
-        <className>AESim.Sho</className>
-        <methodName>getHour</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
     <entry>
       <string>W3WillOfKnowledge1</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
         <id>W3WillOfKnowledge1</id>
-        <className>AESim.Sho</className>
+        <className>AESim.Consultant</className>
         <methodName>getW3WillOfKnowledge1</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
     <entry>
-      <string>W3WillOfKnowledge2</string>
+      <string>W4SocialDesire</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>W3WillOfKnowledge2</id>
-        <className>AESim.Sho</className>
-        <methodName>getW3WillOfKnowledge2</methodName>
-      </repast.simphony.data2.engine.MethodDataSourceDefinition>
-    </entry>
-    <entry>
-      <string>W3WillOfKnowledge3</string>
-      <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>W3WillOfKnowledge3</id>
-        <className>AESim.Sho</className>
-        <methodName>getW3WillOfKnowledge3</methodName>
-      </repast.simphony.data2.engine.MethodDataSourceDefinition>
-    </entry>
-    <entry>
-      <string>W3WillOfKnowledge4</string>
-      <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>W3WillOfKnowledge4</id>
-        <className>AESim.Sho</className>
-        <methodName>getW3WillOfKnowledge4</methodName>
-      </repast.simphony.data2.engine.MethodDataSourceDefinition>
-    </entry>
-    <entry>
-      <string>W3WillOfKnowledge5</string>
-      <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>W3WillOfKnowledge5</id>
-        <className>AESim.Sho</className>
-        <methodName>getW3WillOfKnowledge5</methodName>
-      </repast.simphony.data2.engine.MethodDataSourceDefinition>
-    </entry>
-    <entry>
-      <string>W3WillOfKnowledge6</string>
-      <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>W3WillOfKnowledge6</id>
-        <className>AESim.Sho</className>
-        <methodName>getW3WillOfKnowledge6</methodName>
+        <id>W4SocialDesire</id>
+        <className>AESim.Consultant</className>
+        <methodName>getW4SocialDesire</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
   </methodDataSources>

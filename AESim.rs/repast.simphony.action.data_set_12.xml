@@ -1,6 +1,7 @@
 <repast.simphony.data2.engine.DataSetDescriptor>
-  <name>Agg_Fatigue</name>
-  <type>AGGREGATE</type>
+  <name>DurationOfShift</name>
+  <type>NON_AGGREGATE</type>
+  <sourceType>AESim.Staff</sourceType>
   <inclTick>true</inclTick>
   <inclBatchRun>false</inclBatchRun>
   <inclRandomSeed>false</inclRandomSeed>
@@ -11,17 +12,24 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>861689385</hashCode>
+    <hashCode>1265025627</hashCode>
   </scheduleParams>
   <atEnd>false</atEnd>
   <methodDataSources class="linked-hash-map">
     <entry>
-      <string>Fatigue</string>
+      <string>Id</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>Fatigue</id>
-        <className>AESim.Doctor</className>
-        <methodName>getW1Fatigue</methodName>
-        <aggType>MEAN</aggType>
+        <id>Id</id>
+        <className>AESim.Staff</className>
+        <methodName>getId</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>DurationOfShiftText</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>DurationOfShiftText</id>
+        <className>AESim.Staff</className>
+        <methodName>getDurationOfShiftText</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
   </methodDataSources>

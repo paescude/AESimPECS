@@ -1,5 +1,5 @@
 <repast.simphony.data2.engine.DataSetDescriptor>
-  <name>ShiftDoctor</name>
+  <name>PECSDoc</name>
   <type>NON_AGGREGATE</type>
   <sourceType>AESim.Doctor</sourceType>
   <inclTick>true</inclTick>
@@ -7,53 +7,45 @@
   <inclRandomSeed>false</inclRandomSeed>
   <scheduleParams>
     <start>1.0</start>
-    <interval>1.0</interval>
+    <interval>10.0</interval>
     <priority>-Infinity</priority>
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>1476081890</hashCode>
+    <hashCode>-242860457</hashCode>
   </scheduleParams>
   <atEnd>false</atEnd>
   <methodDataSources class="linked-hash-map">
     <entry>
-      <string>C2MyDurationShift</string>
+      <string>W1Fatigue</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>C2MyDurationShift</id>
+        <id>W1Fatigue</id>
         <className>AESim.Doctor</className>
-        <methodName>getC2MyDurationShift</methodName>
+        <methodName>getW1Fatigue</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
     <entry>
-      <string>Id</string>
+      <string>W2Stress</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>Id</id>
+        <id>W2Stress</id>
         <className>AESim.Doctor</className>
-        <methodName>getId</methodName>
+        <methodName>getW2Stress</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
     <entry>
-      <string>Day</string>
+      <string>W3WillOfKnowledge</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>Day</id>
+        <id>W3WillOfKnowledge</id>
         <className>AESim.Doctor</className>
-        <methodName>getDay</methodName>
+        <methodName>getW3WillOfKnowledge</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
     <entry>
-      <string>Hour</string>
+      <string>W4SocialDesire</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>Hour</id>
+        <id>W4SocialDesire</id>
         <className>AESim.Doctor</className>
-        <methodName>getHour</methodName>
-      </repast.simphony.data2.engine.MethodDataSourceDefinition>
-    </entry>
-    <entry>
-      <string>Minute</string>
-      <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>Minute</id>
-        <className>AESim.Doctor</className>
-        <methodName>getMinute</methodName>
+        <methodName>getW4SocialDesire</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
   </methodDataSources>
