@@ -234,7 +234,7 @@ public class AEContextBuilder implements ContextBuilder<Object> {
 		}
 
 		if (RunEnvironment.getInstance().isBatch()) {
-			double weeksEnd=30;
+			double weeksEnd=8;
 			double endSim= weeksEnd*7*24*60;
 			RunEnvironment.getInstance().endAt(endSim);
 //			RunEnvironment.getInstance().endAt(524160);// End the simulation
@@ -243,6 +243,7 @@ public class AEContextBuilder implements ContextBuilder<Object> {
 														// RunEnvironment.getInstance().endAt(10080);
 			double simTime = RunEnvironment.getInstance().getSparklineLength();
 		
+			
 //			System.out.println("Simulation will end at: " + simTime);
 		}
 

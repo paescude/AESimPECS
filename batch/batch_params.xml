@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<sweep runs="1">
+<sweep runs="10">
 	<parameter name="initialPatients" type= "constant" constant_type="number" value="30" ></parameter> 
 	<parameter name="initialDoctors" type= "constant" constant_type="number" value="2" /> 
 	<parameter name="initialSHOs" type= "constant" constant_type="number" value="9" />

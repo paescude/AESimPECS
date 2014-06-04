@@ -222,7 +222,7 @@ if (this.isInShift()){
 		double avPatsNotSeenByThisDoc = (this.calculateAverageTimeAllPatients()[0]/60)*this.calculateAverageTimeAllPatients()[1]-this.getX4MyPatientsAverageTimeInSys()*this.getAllMyPatients().size();
 		
 		
-		double x = 2*(beta1*this.getX4MyPatientsAverageTimeInSys()+beta2*avPatsNotSeenByThisDoc);
+		double x = (beta1*this.getX4MyPatientsAverageTimeInSys()+beta2*avPatsNotSeenByThisDoc);
 		double c = beta1*this.getC3LogisticCalmC()+beta2*this.getCpLogisticCalmC();
 		
 		this.setZ2Calmness(MathFunctions.calcFLogisticPositive(x, alpha1,c));
@@ -637,6 +637,7 @@ System.out.println(" decision is " + decision);
 					switch (this.getHowToChoosePats()){
 						case 1:
 							this.decideWhatToDoStress();
+//							this.decideWhatToDo();
 						case 2:
 							this.decideWhatToDo();
 						case 3:
@@ -990,20 +991,21 @@ System.out.println(patientToMove.getId()
 		// System.out.println("triangularOBS :   " + serviceTime);
 //		if(this.getHowToChoosePats()==0 && this.calculateAverageTimeAllPatients()[0]>120){
 //		if(this.getHowToChoosePats()==0 && /*this.calculateAverageTimeAllPatients()[2]>120 &&*/ patient.getTimeInSystem()>200 && patient.getTimeInSystem()<240){
-		if(this.getHowToChoosePats()>0 && /*this.calculateAverageTimeAllPatients()[2]>120 &&*/ patient.getTimeInSystem()>180){
+		if(this.getHowToChoosePats()>0 && /*this.calculateAverageTimeAllPatients()[2]>120 &&*/ patient.getTimeInSystem()>160){
 			double percChangeTService=1;
+			this.multiTaskingFactor=6;
 
-			if (patient.getTimeInSystem()<240){
-				percChangeTService= -patient.getTimeInSystem()+250;
+			if (patient.getTimeInSystem()<200){
+				percChangeTService= (-patient.getTimeInSystem()+220)/100;
 			}
 			else {
 				percChangeTService= 0.1;
 			}
 		
 			serviceTime*=percChangeTService;
-			double probTest= patient.getProbTest()*0.5;
+			double probTest= patient.getProbTest()*0.2;
 			patient.setProbTest(probTest);
-			double probXRay= patient.getProbXRay()*0.5;
+			double probXRay= patient.getProbXRay()*0.2;
 			patient.setProbXRay(probXRay);
 			patient.setChangedProbTests(true);
 			//ojo aqui hay un problema porque cuando se lee esto el paciente no sabe que hacer entonces esta multiplicacion debe ser allá en doc y no aquí
