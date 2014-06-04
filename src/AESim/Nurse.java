@@ -263,7 +263,9 @@ public class Nurse extends Staff {
 		double rndDNW = RandomHelper.createUniform().nextDouble();
 		float [][] matrixDNW = Reader.getArrayDNW();		
 		if (rndDNW <= matrixDNW[getHour()][0]) {
-			this.removePatientFromDepartment(patient);
+//			this.removePatientFromDepartment(patient);
+			context.remove(patient);
+			
 		}
 
 		else {
@@ -276,7 +278,8 @@ public class Nurse extends Staff {
 					patient.setGoToTreatRoom(true);
 					patient.addToQ("qBlue ");
 				} else {
-					this.removePatientFromDepartment(patient);
+//					this.removePatientFromDepartment(patient);
+					context.remove(patient);
 				}
 
 			} else if (probsTriage[0][0] < rnd && rnd <= probsTriage[1][0]) {

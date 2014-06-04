@@ -100,7 +100,8 @@ public class AmbulanceIn extends SimObject {
 		double rndDNW = RandomHelper.createUniform().nextDouble();
 		float [][] matrixDNW = Reader.getArrayDNW();		
 		if (rndDNW <= matrixDNW[getHour()][0]) {
-			this.removePatientFromDepartment(patient);
+//			this.removePatientFromDepartment(patient);
+			context.remove(patient);
 		} else {
 			Uniform unif = RandomHelper.createUniform();
 			double rnd = unif.nextDouble();

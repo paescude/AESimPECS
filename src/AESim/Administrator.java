@@ -41,6 +41,10 @@ public class Administrator extends SimObject {
 					week = 0;
 			}
 		}
+		
+		if (week==8){
+			System.out.println(" SEMANA 8");
+		}
 
 	}
 	
